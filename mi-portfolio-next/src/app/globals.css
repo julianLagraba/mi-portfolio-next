@@ -1,0 +1,807 @@
+/* =============================================================================
+   styles.css – Hoja de estilos completa para Portfolio
+   ============================================================================= */
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Variables globales
+   —————————————————————————————————————————————————————————————————————————— */
+:root {
+  /* Paleta de colores */
+  --clr-bg:        #1b1919;   /* fondo general */
+  --clr-card:      #2a2929;   /* fondo de las tarjetas */
+  --clr-white:     #ffffff;
+  --clr-primary:   #ffffff;   /* texto principal claro */
+  --clr-secondary: #cacaca;   /* azul de acento */
+  --clr-btn-text:  #1b1919;   /* texto oscuro sobre botones azules */
+  --clr-text:      #f5f3f3;   /* texto neutro claro */
+  --clr-muted:     #777777;   /* texto menos destacado */
+  --clr-hover:     #e0e0e0;   /* azul claro para hover */
+
+  /* Tipografía */
+  --font-base: 'Inter', sans-serif;
+
+  /* Radios y espaciados */
+  --radius: 8px;
+  --gap: 2rem;
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Import Google Font
+   —————————————————————————————————————————————————————————————————————————— */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ——————————————————————————————————————————————————————————————————————————
+   RESET & Global
+   —————————————————————————————————————————————————————————————————————————— */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-base);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  transition: color .2s;
+}
+a:hover {
+  color: var(--clr-secondary);
+}
+ul {
+  list-style: none;
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Secciones de fondo alterno
+   —————————————————————————————————————————————————————————————————————————— */
+.section-transparent { background: transparent; }
+.section-dark        { background: #2b2a2a; }
+.section-darker      { background: #4e4e4e; }
+
+/* — Texto y enlaces en secciones oscuras — */
+.section-dark, .section-darker {
+  color: var(--clr-text);
+}
+.section-dark a,
+.section-darker a {
+  color: var(--clr-secondary);
+}
+.section-dark a:hover,
+.section-darker a:hover {
+  color: var(--clr-hover);
+}
+
+/* Espaciado vertical para todas las secciones */
+section {
+  width: 100%;
+  padding: 6rem 0;
+  scroll-margin-top: 80px; /* para anclajes con navbar fijo */
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Contenedor centrado
+   —————————————————————————————————————————————————————————————————————————— */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /*background: transparent;*/
+  box-shadow: none;
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Navbar
+   —————————————————————————————————————————————————————————————————————————— */
+header.nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: var(--clr-bg);
+  z-index: 1000;
+  transition: background .3s, box-shadow .3s;
+}
+header.nav.scrolled {
+  background: var(--clr-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+header.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Logo / Home */
+.logo {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 1rem;
+  color: var(--clr-primary);
+}
+.logo:hover {
+  color: var(--clr-secondary);
+}
+
+/* Enlaces de navegación */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: 0.85rem;
+  color: var(--clr-primary);
+  padding: .25rem 0;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width .3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--clr-secondary);
+}
+
+#lang-switch {
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+
+  /* Quitamos el “look nativo” para poder personalizar más */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+  /* Ponemos nuestra flecha personalizada (opcional) */
+  background-image: url("data:image/svg+xml,%3Csvg…%3E"); /* tu SVG de flecha */
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+}
+
+/* Cuando el select está abierto o enfocado */
+#lang-switch:focus {
+  outline: none;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Intentamos también darles fondo semitransparente a las opciones */
+#lang-switch option {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--clr-white);
+}
+
+/* Algunos WebKit requieren esto */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  #lang-switch option {
+    background-color: rgba(0,0,0,0.5) !important;
+    color: #fff !important;
+  }
+}
+a.cv-button {
+  display: inline-block;
+  padding: 0.15rem 1.25rem !important;  /* 👈 bajé el alto, mismo ancho */
+  background: #e3e3e3 !important;
+  color: #111 !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  letter-spacing: .02em;
+  border: 1px solid transparent;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+a.cv-button:hover {
+  background: #3e3e3e !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Hero con partículas
+   —————————————————————————————————————————————————————————————————————————— */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+#tsparticles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+.hero-content h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--clr-primary);
+}
+.hero-content p {
+  font-size: 1.1rem;
+  color: var(--clr-text);
+  opacity: .8;
+  margin-bottom: 2rem;
+}
+.hero-content .btn-primary {
+  padding: .75rem 1.5rem;
+  font-weight: 600;
+}
+
+.hero-scroll{
+  position: fixed;      /* o absolute dentro de .hero si preferís */
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 30;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+}
+
+.hero-scroll.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(6px);
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Botones primarios
+   —————————————————————————————————————————————————————————————————————————— */
+.btn-primary {
+  display: inline-block;
+  background: var(--clr-secondary);
+  color: var(--clr-btn-text);
+  padding: .7rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .2s, background .2s;
+}
+.btn-primary:hover {
+  background: #3e3e3e !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  transform: translateY(-2px);
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Sección “Intro” 
+   —————————————————————————————————————————————————————————————————————————— */
+.intro {
+  text-align: center;
+}
+.intro h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.intro p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--clr-text);
+}
+
+/* ────────────────────────────────────────────────────────── */
+/*  Sobre mí: grid con foto y contenido                  */
+/* ────────────────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+.about-photo img {
+  width: 100%;
+  max-width: 300px;                /* igual al de Yan */
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.about-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--clr-white);
+}
+.about-content p {
+  color: var(--clr-text);
+  margin-bottom: 1rem;
+}
+.about-content a {
+  color: var(--clr-secondary);
+  text-decoration: underline;
+}
+
+/* ─────────────────────────────
+   Carrusel de Certificaciones
+───────────────────────────────── */
+.cert-carousel {
+  position: relative;
+  margin-top: 2rem;
+}
+
+/* degradados “cobrando” las tarjetas que quedan fuera */
+.cert-carousel::before,
+.cert-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3rem;            /* ajusta el ancho del fade */
+  pointer-events: none;   /* que no interfiera con el scroll */
+  z-index: 5;
+}
+
+
+/* Flechas */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 2rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 10;
+  transition: background .2s;
+}
+.carousel-btn:hover {
+  background: rgba(255,255,255,1);
+}
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+/* Track container */
+.carousel-track-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 3rem;  
+  scroll-padding: 0 1rem;
+}
+.carousel-track-container {
+  overflow-x: auto;
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Chrome, Safari y Opera */
+.carousel-track-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lista de slides */
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Cada slide */
+.carousel-slide {
+  flex: 0 0 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+  background: transparent;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 1rem;
+  scroll-snap-align: start;
+}
+
+/* Imagen + texto */
+.carousel-slide img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+
+.carousel-slide h3 {
+  font-size: 1rem;
+  margin: 0.25rem 0;
+  color: var(--clr-text);
+}
+.carousel-slide .issuer {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  margin-top: 0.25rem;
+}
+/* Centrar siempre la imagen */
+.carousel-slide img {
+  display: block;    /* saca el comportamiento inline */
+  margin: 0 auto;    /* centrar horizontalmente */
+}
+
+
+
+/* ─────────────────────────────
+   Eliminar subrayado en links del carrusel
+───────────────────────────────── */
+.carousel-slide a {
+  text-decoration: none !important;
+  color: inherit;           /* hereda el color del contenedor */
+}
+
+.carousel-slide a:hover {
+  text-decoration: underline;  /* si quieres subrayar al pasar el mouse */
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Portafolio: filtros y grid de tarjetas
+   —————————————————————————————————————————————————————————————————————————— */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.filter-btn {
+  color: var(--clr-white);
+  border: 2px solid var(--clr-secondary);
+  background: transparent;
+  border: 2px solid var(--clr-secondary);
+  border-radius: 4px;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  font-weight: 500;
+}
+.filter-btn.active{
+  background: var(--clr-secondary);
+  color: var(--clr-btn-text);
+}
+.filter-btn:hover {
+  background: var(--clr-hover);
+  border-color: var(--clr-hover);
+  color: var(--clr-btn-text);
+}
+
+.projects-grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ─────────────────────────────
+   GRID DE TARJETAS
+───────────────────────────────── */
+.projects-grid {
+  display: grid;
+  gap: 2rem;
+  /* Pasa de 2 columnas a 3 columnas */
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  padding: 2rem 0;
+}
+
+/* En móviles bajas a 1 columna */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* En tablets intermedias podrías usar 2 columnas */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─────────────────────────────
+   TARJETA DE PROYECTO
+───────────────────────────────── */
+.project-card {
+  width: 320px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+}
+
+/* ─────────────────────────────
+   IMAGEN / OVERLAY
+───────────────────────────────── */
+.card-image {
+  width: 100%;
+  height: 200px;      /* alto fijo para recorte */
+  overflow: hidden;
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* recorta para llenar */
+  object-position: center center;
+  transition: transform .3s;
+}
+.card-image:hover img {
+  transform: scale(1.1);
+}
+
+.card-image:hover .overlay {
+  opacity: 1;
+}
+.card-image .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none; /* para que los clicks “pasen” al botón si llega a superponerse */
+}
+
+
+/* ─────────────────────────────
+   CONTENIDO (TÍTULO + BOTÓN)
+───────────────────────────────── */
+.card-content {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.card-content h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+}
+.card-content .btn-primary {
+  display: inline-block;
+  margin-top: auto;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  background: var(--clr-secondary);
+  color: var(--clr-white);
+  border-radius: 4px;
+  transition: background .2s, transform .2s;
+  text-decoration: none;
+}
+.card-content .btn-primary:hover {
+  background: var(--clr-white);
+  transform: translateY(-2px);
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Footer / Contacto
+   —————————————————————————————————————————————————————————————————————————— */
+footer {
+  padding: 2rem 0;
+  text-align: center;
+  background: var(--clr-white);
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+}
+footer .container {
+  max-width: 800px;
+  text-align: center;
+}
+footer p {
+  color: var(--clr-muted);
+  margin-bottom: .5rem;
+}
+footer a {
+  font-weight: 500;
+  margin: 0 .5rem;
+  transition: color .2s;
+}
+footer a:hover {
+  color: var(--clr-secondary);
+}
+
+/* Cambiar solo el texto del botón dentro de .project-card */
+.project-card .btn-primary {
+  /* fondo: (opcional) si quieres otro color: */
+  /* background-color: #ff6b6b; */
+
+  /* texto: */
+  color: #1b1919;           /* pon aquí el color que prefieras */
+  font-weight: 700;         /* opcional, más negrita */
+}
+
+/* Si quieres un hover distinto también: */
+.project-card .btn-primary:hover {
+  background-color: #6db3ff; /* o el azul claro que usarías */
+  color: #ffffff;             /* texto blanco al pasar por encima */
+}
+
+#contact .container {
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────────────────── */
+/* Sobreescribe transparencias de secciones para fondo sólido */
+/* ────────────────────────────────────────────────────────── */
+
+.section-transparent {
+  /* antes era transparente, ahora usa el color de tarjetas */
+  background-color: var(--clr-card) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.section-dark {
+  /* tu color medio oscuro */
+  background-color: #1b1919 !important;
+  position: relative;
+  z-index: 1;
+}
+
+.section-darker {
+  /* un tono aún más oscuro */
+  background-color: #2b2a2a !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Asegúrate de que las partículas queden por detrás */
+#tsparticles {
+  z-index: 0;
+}
+
+/* ——— Contact panel ——— */
+.contact-panel { padding: 4rem 0; }
+
+.contact-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.25rem 2rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.contact-name {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 .5rem 0;
+  color: #fff;
+}
+
+.contact-blurb {
+  margin: .5rem 0 1.25rem;
+  color: var(--clr-text);
+  opacity: .95;
+  max-width: 52ch;
+  line-height: 1.6;
+}
+
+.contact-cta {
+  display: inline-block;
+  margin-top: .25rem;
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  background: var(--clr-primary);
+  color: #0e0e0e;
+  font-weight: 600;
+  transition: transform .15s ease, filter .2s ease;
+}
+.contact-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+
+.contact-title {
+  font-size: .88rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--clr-secondary);
+  margin: .2rem 0 .9rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid; gap: .45rem;
+}
+.contact-list a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.contact-list a:hover {
+  color: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+}
+
+.contact-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+  margin: 1.75rem 0 1.25rem;
+}
+
+.contact-copy {
+  text-align: center;
+  color: rgba(255,255,255,.7);
+  font-size: .95rem;
+}
+
+
+
+/* ——— Footer mínimo ——— */
+.site-footer {
+  background: var(--clr-bg);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 1.25rem 0 2rem;
+  text-align: center;
+}
+
+.site-footer p {
+  color: var(--clr-muted);
+  margin: 0;
+  }

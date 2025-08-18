@@ -1,0 +1,365 @@
+@import url("/global.css");
+
+/* ──────────────────────────────────────────────────────
+   proyecto.css – Detalle de proyecto 
+─────────────────────────────────────────────────────── */
+
+/* Anular el padding global de sections sólo dentro de la vista de proyecto */
+.project-page section {
+  padding: 1.5rem 0 !important;   
+  margin: 0;           
+}
+
+:root {
+  --gap: 0.5rem;
+}
+
+/* Nav secundaria */
+header.nav-secondary {
+  position: sticky;
+  top: 0;
+  background: var(#2b2a2a);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 100;
+}
+header.nav-secondary .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+header.nav-secondary .back-link {
+  color: var(--clr-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .2s;
+}
+header.nav-secondary .back-link:hover {
+  color: var(--clr-hover);
+}
+header.nav-secondary .nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+header.nav-secondary .nav-links a {
+  color: var(--clr-text);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  transition: color .2s;
+}
+header.nav-secondary .nav-links a:hover {
+  color: var(--clr-secondary);
+}
+
+/* Contenedor full-width con fondo claro */
+ main.project-page {
+   width: 100%;
+   min-height: 100vh;
+   background-color: var(--clr-card);
+   padding-top: 6rem;      
+   padding-bottom: 1rem;
+ }
+
+ main.project-page > .container {
+   max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   gap: var(--gap);
+   color: var(--clr-text);
+   padding: 1rem 0.5rem;
+}
+
+/* Encabezado de Proyecto */
+.project-header {
+  margin-bottom: calc(var(--gap) / 2);
+}
+.project-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--clr-primary);
+  margin-bottom: calc(var(--gap) / 4);
+}
+.project-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--clr-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Secciones generales */
+.project-page section {
+  margin-top: var(--gap);
+  background-color: var(--clr-card);
+}
+.project-page section h2 {
+  font-size: 1.5rem;
+  margin-bottom: calc(var(--gap) / 2);
+  color: var(--clr-primary);
+}
+.project-page section p,
+.project-page section ul {
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: calc(var(--gap) / 2);
+}
+
+/* Grid: Descripción y Tecnologías */
+.tech-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  margin-bottom: var(--gap);
+}
+
+.tech-data ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+/* Embed de Power BI (Demo) */
+.embed-container {
+  position: relative;
+  width: 100%;
+  min-height: 300px;       
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  margin-bottom: var(--gap);
+  padding-bottom: 50%; 
+}
+.embed-container iframe {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  border:0;
+}
+
+/* Gallery de Workflow */
+.workflow-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: var(--gap);
+  margin-bottom: var(--gap);
+}
+.workflow-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: transform .2s;
+}
+.workflow-gallery img:hover {
+  transform: scale(1.03);
+}
+/* 1) Contenedor principal */
+.workflow-carousel {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.workflow-carousel::before,
+.workflow-carousel::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0;
+  width: 4rem;
+  z-index: 5;
+  pointer-events: none;
+}
+.workflow-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--clr-bg), transparent);
+}
+.workflow-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--clr-bg), transparent);
+}
+
+/* 3) Flechas */
+.carousel-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none; padding: .5rem;
+  cursor: pointer; z-index: 10;
+  border-radius: 4px;
+}
+.carousel-btn.prev { left: 0.5rem; }
+.carousel-btn.next { right: 0.5rem; }
+
+/* 4) Track container */
+.workflow-carousel .carousel-track-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;          
+  padding: 0; 
+}
+.carousel-track-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 5) Track y Slides */
+.carousel-track {
+  display: flex;
+  scroll-behavior: smooth;
+  gap: 1rem;
+}
+.carousel-slide {
+  flex: 0 0 100%;        
+  scroll-snap-align: start;
+  position: relative;
+}
+
+/* 6) Imagen responsiva y proporcional */
+.workflow-carousel .carousel-slide {
+  flex: 0 0 100%;        
+  max-width: 100%;
+  scroll-snap-align: start;
+  background: transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.workflow-carousel .carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;     
+}
+
+/* Fuentes de datos */
+.data-sources {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--gap) / 2);
+  margin-bottom: var(--gap);
+}
+.data-sources .source-link {
+  color: var(--clr-secondary);
+  font-weight: 500;
+  text-decoration: none;
+}
+.data-sources .btn-secondary {
+  background: var(--clr-secondary);
+  color: var(--clr-white);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.data-sources .btn-secondary:hover {
+  background: var(--clr-secondary-dark);
+}
+
+/* ─── PARCHE DE ESPACIADO Y ALINEACIÓN ─── */
+.project-header {
+  text-align: center !important;
+  margin-bottom: 0.5rem !important;
+}
+.tech-data {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+.tech-data section {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+.project-page section {
+  margin: 0.5rem 0 !important;
+}
+#demo,
+#workflow,
+#fuentes,
+#resultados {
+  margin: 0.5rem 0 !important;
+}
+
+/* ─── BOTÓN “VER DATOS” ─── */
+#fuentes ul {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+#fuentes ul li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.btn-datos {
+  display: inline-block;
+  background: var(--clr-secondary);
+  color: var(--clr-white);
+  text-decoration: none;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  transition: background .2s;
+}
+.btn-datos:hover {
+  background: var(--clr-secondary-dark);
+}
+
+/* ─── AJUSTES GENERALES ─── */
+.project-page {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+.embed-container,
+.workflow-gallery {
+  margin: 0 !important;
+}
+
+
+/* Footer / Contacto */
+footer#contact {
+  background: var(--clr-darker);
+  text-align: center;
+  padding: calc(var(--gap) / 2) 0;
+  margin-top: var(--gap);
+}
+footer#contact p {
+  font-size: 0.9rem;
+  color: var(--clr-text);
+}
+footer#contact a {
+  color: var(--clr-secondary);
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+footer#contact a:hover {
+  color: var(--clr-hover);
+}
+
+
+main.project-page {
+  padding-top: 6rem;
+}
+
+main.project-page {
+  padding-top: 6rem; 
+}
+
+main.project-page .project-header {
+  margin-top: 8rem;
+}
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Fondo sólido para páginas de proyecto (más claro que el general)
+   —————————————————————————————————————————————————————————————————————————— */
+
+main.project-page {
+  background-color: var(--clr-card);
+  min-height: 100vh;
+}
