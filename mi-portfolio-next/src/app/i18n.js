@@ -96,6 +96,17 @@ const i18n = {
     "contact.emailCta": "✉️ Get in touch",
     "contact.pages": "PAGES",
     "contact.getInTouch": "GET IN TOUCH",
+    // skills
+    "soft.problemSolving": "Problem-Solving",
+    "soft.analyticalThinking": "Analytical Thinking",
+    "soft.resultsOriented": "Results-Oriented",
+    "soft.effectiveCommunication": "Effective Communication",
+    "soft.teamworkCollaboration": "Teamwork & Collaboration",
+    "soft.proactivityAutonomy": "Proactivity & Autonomy",
+    "soft.continuousLearning": "Continuous Learning",
+    "soft.adaptability": "Adaptability to New Tech",
+    "soft.timeManagement": "Time Management",
+    "soft.attentionToDetail": "Attention to Detail"
   },
   es: {
     "nav.home":      "Inicio",
@@ -194,6 +205,17 @@ const i18n = {
     "contact.emailCta": "✉️ Escribime",
     "contact.pages": "PÁGINAS",
     "contact.getInTouch": "CONTACTO",
+    //skills
+    "soft.problemSolving": "Resolución de problemas",
+    "soft.analyticalThinking": "Pensamiento analítico",
+    "soft.resultsOriented": "Orientación a resultados",
+    "soft.effectiveCommunication": "Comunicación efectiva",
+    "soft.teamworkCollaboration": "Trabajo en equipo y colaboración",
+    "soft.proactivityAutonomy": "Proactividad y autonomía",
+    "soft.continuousLearning": "Aprendizaje continuo",
+    "soft.adaptability": "Adaptabilidad a nuevas tecnologías",
+    "soft.timeManagement": "Gestión del tiempo",
+    "soft.attentionToDetail": "Atención al detalle"
   },
   
 };

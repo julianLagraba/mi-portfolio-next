@@ -1,5 +1,5 @@
 /* =============================================================================
-   styles.css – Hoja de estilos completa para Portfolio
+   globals.css – Hoja de estilos completa para Portfolio
    ============================================================================= */
 
 /* ——————————————————————————————————————————————————————————————————————————
@@ -70,7 +70,6 @@ ul {
 .section-dark        { background: #2b2a2a; }
 .section-darker      { background: #4e4e4e; }
 
-/* — Texto y enlaces en secciones oscuras — */
 .section-dark, .section-darker {
   color: var(--clr-text);
 }
@@ -83,11 +82,10 @@ ul {
   color: var(--clr-hover);
 }
 
-/* Espaciado vertical para todas las secciones */
 section {
   width: 100%;
   padding: 6rem 0;
-  scroll-margin-top: 80px; /* para anclajes con navbar fijo */
+  scroll-margin-top: 80px; 
 }
 
 /* ——————————————————————————————————————————————————————————————————————————
@@ -175,13 +173,12 @@ header.nav .container {
   padding: 0.3rem 0.8rem;
   font-size: 0.85rem;
 
-  /* Quitamos el “look nativo” para poder personalizar más */
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
 
-  /* Ponemos nuestra flecha personalizada (opcional) */
-  background-image: url("data:image/svg+xml,%3Csvg…%3E"); /* tu SVG de flecha */
+  
+  background-image: url("data:image/svg+xml,%3Csvg…%3E"); 
   background-repeat: no-repeat;
   background-position: right 0.6rem center;
 }
@@ -192,13 +189,11 @@ header.nav .container {
   background: rgba(255,255,255,0.1);
 }
 
-/* Intentamos también darles fondo semitransparente a las opciones */
 #lang-switch option {
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--clr-white);
 }
 
-/* Algunos WebKit requieren esto */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   #lang-switch option {
     background-color: rgba(0,0,0,0.5) !important;
@@ -207,7 +202,7 @@ header.nav .container {
 }
 a.cv-button {
   display: inline-block;
-  padding: 0.15rem 1.25rem !important;  /* 👈 bajé el alto, mismo ancho */
+  padding: 0.15rem 1.25rem !important;  
   background: #e3e3e3 !important;
   color: #111 !important;
   border-radius: 9999px !important;
@@ -268,7 +263,7 @@ a.cv-button:hover {
 }
 
 .hero-scroll{
-  position: fixed;      /* o absolute dentro de .hero si preferís */
+  position: fixed;      
   left: 50%;
   bottom: 24px;
   transform: translateX(-50%);
@@ -311,6 +306,137 @@ a.cv-button:hover {
   transform: translateY(-2px);
 }
 
+
+/* SKILL SECCION*/
+
+.skills-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  color: #fff;
+}
+.skills-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.skills-header p {
+  margin-top: .5rem;
+  font-size: .9rem;
+  color: #ccc;
+}
+
+.skills-box {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.skills-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Marquee */
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.logo-tile {
+  min-width: 130px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: .5rem;
+}
+.logo-tile img {
+  height: 40px;
+  max-width: 100%;
+  opacity: 0.9;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.skills-logo-tile {
+  min-width: 130px;
+  height: auto;               /* para que crezca con el texto */
+  margin: 0 24px;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  flex-direction: column;     /* apila logo + texto */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;                   /* espacio entre logo y texto */
+}
+
+.skills-logo-tile img {
+  height: 40px;
+  width: auto;
+  opacity: .9;
+  display: block;
+}
+
+.skills-logo-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+
+.skills-logo-fallback {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  opacity: .85;
+  text-align: center;
+}
+
+
+/* Soft skills */
+.skills-soft-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+  list-style: none; padding: 0; margin: .5rem 0 0;
+}
+@media (min-width: 860px) { .skills-soft-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.skills-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 10px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  font-size: .9rem; color: rgba(255,255,255,.92);
+}
+.skills-chip:hover { background: rgba(255,255,255,.06); transform: translateY(-1px); }
+.skills-chip span[aria-hidden]{ font-size: 1rem; }
+
+
+
+
+
+
+
 /* ——————————————————————————————————————————————————————————————————————————
    Sección “Intro” 
    —————————————————————————————————————————————————————————————————————————— */
@@ -339,7 +465,7 @@ a.cv-button:hover {
 }
 .about-photo img {
   width: 100%;
-  max-width: 300px;                /* igual al de Yan */
+  max-width: 300px;                
   border-radius: var(--radius);
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
@@ -365,14 +491,13 @@ a.cv-button:hover {
   margin-top: 2rem;
 }
 
-/* degradados “cobrando” las tarjetas que quedan fuera */
 .cert-carousel::before,
 .cert-carousel::after {
   content: "";
   position: absolute;
   top: 0; bottom: 0;
-  width: 3rem;            /* ajusta el ancho del fade */
-  pointer-events: none;   /* que no interfiera con el scroll */
+  width: 3rem;            
+  pointer-events: none;   
   z-index: 5;
 }
 
@@ -407,8 +532,8 @@ a.cv-button:hover {
 }
 .carousel-track-container {
   overflow-x: auto;
-  -ms-overflow-style: none;  /* IE y Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;    
 }
 
 /* Chrome, Safari y Opera */
@@ -416,7 +541,6 @@ a.cv-button:hover {
   display: none;
 }
 
-/* Lista de slides */
 .carousel-track {
   display: flex;
   gap: 1.5rem;
@@ -424,7 +548,6 @@ a.cv-button:hover {
   scroll-behavior: smooth;
 }
 
-/* Cada slide */
 .carousel-slide {
   flex: 0 0 calc(50% - 1rem);
   max-width: calc(50% - 1rem);
@@ -454,24 +577,19 @@ a.cv-button:hover {
   color: var(--clr-muted);
   margin-top: 0.25rem;
 }
-/* Centrar siempre la imagen */
+
 .carousel-slide img {
-  display: block;    /* saca el comportamiento inline */
-  margin: 0 auto;    /* centrar horizontalmente */
+  display: block;    
+  margin: 0 auto;    
 }
 
-
-
-/* ─────────────────────────────
-   Eliminar subrayado en links del carrusel
-───────────────────────────────── */
 .carousel-slide a {
   text-decoration: none !important;
-  color: inherit;           /* hereda el color del contenedor */
+  color: inherit;           
 }
 
 .carousel-slide a:hover {
-  text-decoration: underline;  /* si quieres subrayar al pasar el mouse */
+  text-decoration: underline;  
 }
 
 /* ——————————————————————————————————————————————————————————————————————————
@@ -522,14 +640,12 @@ a.cv-button:hover {
   padding: 2rem 0;
 }
 
-/* En móviles bajas a 1 columna */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* En tablets intermedias podrías usar 2 columnas */
 @media (min-width: 769px) and (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -562,13 +678,13 @@ a.cv-button:hover {
 ───────────────────────────────── */
 .card-image {
   width: 100%;
-  height: 200px;      /* alto fijo para recorte */
+  height: 200px;      
   overflow: hidden;
 }
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* recorta para llenar */
+  object-fit: cover; 
   object-position: center center;
   transition: transform .3s;
 }
@@ -656,52 +772,38 @@ footer a:hover {
   color: var(--clr-secondary);
 }
 
-/* Cambiar solo el texto del botón dentro de .project-card */
 .project-card .btn-primary {
-  /* fondo: (opcional) si quieres otro color: */
-  /* background-color: #ff6b6b; */
 
-  /* texto: */
-  color: #1b1919;           /* pon aquí el color que prefieras */
-  font-weight: 700;         /* opcional, más negrita */
+  color: #1b1919;           
+  font-weight: 700;        
 }
 
-/* Si quieres un hover distinto también: */
 .project-card .btn-primary:hover {
-  background-color: #6db3ff; /* o el azul claro que usarías */
-  color: #ffffff;             /* texto blanco al pasar por encima */
+  background-color: #6db3ff; 
+  color: #ffffff;             
 }
 
 #contact .container {
   text-align: center;
 }
 
-/* ────────────────────────────────────────────────────────── */
-/* Sobreescribe transparencias de secciones para fondo sólido */
-/* ────────────────────────────────────────────────────────── */
-
 .section-transparent {
-  /* antes era transparente, ahora usa el color de tarjetas */
   background-color: var(--clr-card) !important;
   position: relative;
   z-index: 1;
 }
 
 .section-dark {
-  /* tu color medio oscuro */
   background-color: #1b1919 !important;
   position: relative;
   z-index: 1;
 }
 
 .section-darker {
-  /* un tono aún más oscuro */
   background-color: #2b2a2a !important;
   position: relative;
   z-index: 1;
 }
-
-/* Asegúrate de que las partículas queden por detrás */
 #tsparticles {
   z-index: 0;
 }
@@ -805,3 +907,217 @@ footer a:hover {
   color: var(--clr-muted);
   margin: 0;
   }
+
+
+  /* Reset responsive básico */
+*, *::before, *::after { box-sizing: border-box; }
+img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
+iframe { max-width: 100%; }
+
+/* Contenedor fluido */
+.container, .wrap, .section {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
+
+/* Tipografías fluidas */
+:root {
+  --fs-h1: clamp(1.8rem, 2vw + 1.2rem, 3rem);
+  --fs-h2: clamp(1.4rem, 1.5vw + 1rem, 2.2rem);
+  --fs-body: clamp(.95rem, .4vw + .8rem, 1.1rem);
+}
+h1 { font-size: var(--fs-h1); line-height: 1.15; }
+h2 { font-size: var(--fs-h2); line-height: 1.2; }
+body { font-size: var(--fs-body); line-height: 1.6; }
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Botones y badges que no se rompan */
+.btn, .badge { inline-size: fit-content; max-width: 100%; }
+
+p, li, h1, h2, h3, code { overflow-wrap: anywhere; }
+
+/* Breakpoints de ajuste fino */
+@media (max-width: 1024px) {
+  .hero, .header, .section { padding: 2.5rem 0; }
+  .cols-2 { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+}
+@media (max-width: 768px) {
+  .hide-sm { display: none !important; }
+  .card { padding: 1rem; border-radius: 12px; }
+  .gallery img { border-radius: 10px; }
+}
+@media (max-width: 480px) {
+  .header { position: static; }
+  .section { padding: 1.5rem 0; }
+  .hero-title { margin-bottom: .75rem; }
+}
+
+
+/* ===============================
+   HEADER / NAV – Responsive only
+   =============================== */
+
+/* Ajustes en tablets */
+@media (max-width: 1024px){
+  .nav-links{ gap: 1.25rem; }
+}
+
+/* Layout móvil*/
+@media (max-width: 768px){
+  header.nav .container{
+    display: grid !important;
+    grid-template-columns: 1fr auto;  
+    grid-template-areas:
+      "logo lang"
+      "menu menu";
+    align-items: center;
+    row-gap: .6rem;
+    padding-block: .6rem;
+  }
+
+  /* Logo arriba a la izquierda */
+  .logo{
+    grid-area: logo;
+    font-size: .95rem;
+    letter-spacing: .08em;
+  }
+
+  /* Menú centrado y con wrap*/
+  .nav-links{
+    grid-area: menu;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .8rem 1.1rem; 
+    padding: .2rem 0;
+  }
+  .nav-links a{
+    font-size: .9rem;
+    letter-spacing: .03em;
+    white-space: nowrap;               
+  }
+
+  /* Botón CV */
+  .nav-links .cv-button{
+    padding: .35rem 1rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Selector de idioma */
+  #lang-switch{
+    grid-area: lang;
+    justify-self: end;
+    width: 130px;
+    background-image: none;         
+  }
+}
+
+@media (max-width: 420px){
+  .nav-links{ gap: .6rem .9rem; }
+  .nav-links a{ font-size: .85rem; }
+  .nav-links .cv-button{ padding: .3rem .8rem !important; }
+}
+
+/* ============================================
+   CERTIFICATIONS — container-safe HARD RESET
+   (sin vw, todo relativo al ancho del contenedor)
+   ============================================ */
+
+/* Nada se sale del carrusel ni del .container */
+.cert-carousel{
+  position: relative;
+  overflow: hidden !important;
+}
+
+.carousel-track-container{
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory;
+}
+
+/* Espaciado interno del track sin “empujar” el layout */
+.carousel-track{
+  display: flex;
+  gap: 1rem !important;          
+  padding: 0 0 1rem !important;  
+  box-sizing: border-box;
+}
+
+.carousel-slide{
+  box-sizing: border-box !important;
+  flex: 0 0 calc((100% - 2rem) / 2) !important; 
+  max-width: calc((100% - 2rem) / 2) !important;
+  scroll-snap-align: start;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: center;
+}
+
+/* Tablet: 2 columnas */
+@media (max-width: 1024px){
+  .carousel-slide{
+    flex-basis: calc((100% - 1rem) / 2) !important;
+    max-width: calc((100% - 1rem) / 2) !important;
+  }
+}
+
+@media (max-width: 640px){
+  .carousel-slide{
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    padding: .75rem !important;            
+  }
+  .carousel-track{ padding-bottom: .75rem !important; }
+}
+
+/* Imagen y textos compactos */
+.carousel-slide img{
+  width: 110px !important;
+  height: 110px !important;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto .5rem;
+}
+@media (max-width: 640px){
+  .carousel-slide h3{
+    font-size: .95rem !important;
+    line-height: 1.25 !important;
+    margin: .2rem 0 .1rem !important;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .carousel-slide .issuer{ font-size: .82rem !important; line-height: 1.25 !important; }
+}
+
+.carousel-btn{
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 3 !important;
+  background: rgba(255,255,255,.85);
+  border: 0; border-radius: 6px;
+  font-size: 1.3rem; padding: .2rem .45rem;
+}
+.carousel-btn.prev{ left: .5rem !important; }
+.carousel-btn.next{ right: .5rem !important; }
+
+@media (max-width: 640px){
+  .carousel-btn{ font-size: 1.2rem; }
+  .carousel-btn.prev{ left: .4rem !important; }
+  .carousel-btn.next{ right: .4rem !important; }
+}
+
+/* Por si quedaron fades laterales antiguos empujando (opcionales) */
+.cert-carousel::before, .cert-carousel::after{ display:none !important; } 
+
+/* Cierre de seguridad global */
+html, body{ overflow-x: hidden !important; }
+

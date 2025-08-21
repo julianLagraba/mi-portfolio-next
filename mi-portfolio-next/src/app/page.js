@@ -1,7 +1,7 @@
 // app/page.jsx
 import Head from 'next/head'
 import Script from 'next/script'
-
+import SkillsSection from "./components/SkillsSection";
 
 export default function HomePage() {
   return (
@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="container">
           <div id="tsparticles"></div>
           <div className="hero-content container">
-            <h1 data-i18n-key="hero.name">Julián Lagraba</h1>
+            <h1 data-i18n-key="hero.name">JULIÁN LAGRABA</h1>
             <p data-i18n-key="hero.description">
               Data Analyst • Automation • Visualization
             </p>
@@ -34,10 +34,11 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+       
           {/* Flecha hacia “Sobre mí” */}
           <a
             id="hero-arrow"
-            href="#intro"
+            href="#skills"
             className="hero-scroll"
             aria-label="Ir a Sobre mí"
             title="Ir a Sobre mí"
@@ -51,7 +52,10 @@ export default function HomePage() {
               <path fill="currentColor" d="M7.41 8.59 12 13.17 16.59 8.59 18 10l-6 6-6-6z" />
             </svg>
           </a>
+           
       </section>
+
+       <SkillsSection />
 
       {/* INTRO / SOBRE MÍ */}
       <section id="intro" className="section-darker" data-i18n-key="section.intro">
@@ -213,6 +217,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+       
       </section>
 
       {/* PORTAFOLIO */}
