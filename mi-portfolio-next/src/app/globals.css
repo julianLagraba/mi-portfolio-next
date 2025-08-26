@@ -501,6 +501,28 @@ a.cv-button:hover {
   z-index: 5;
 }
 
+/* Ocultar scrollbars horizontales del carrusel */
+.carousel-track-container {
+  scrollbar-width: none;    /* Firefox */
+}
+.carousel-track-container::-webkit-scrollbar { display: none; } /* WebKit */
+
+/* Asegura disposición horizontal de slides con gap */
+.carousel-track {
+  display: flex;
+  gap: 24px;               /* coherente con el JS */
+}
+
+/* Snap (si usás scroll-snap) */
+.carousel-track-container {
+  scroll-snap-type: x mandatory;
+}
+.carousel-slide {
+  scroll-snap-align: start;
+}
+
+
+
 
 /* Flechas */
 .carousel-btn {
@@ -557,6 +579,21 @@ a.cv-button:hover {
   text-align: center;
   padding: 1rem;
   scroll-snap-align: start;
+}
+
+/* Smooth en GPU y sin snaps mientras auto-scroll */
+.carousel-track-container { overflow: hidden !important; scroll-snap-type: none !important; }
+.carousel-track { will-change: transform; transform: translateZ(0); }
+
+/* Evita re-render costoso por sombras en mobile (opcional) */
+@media (max-width: 640px){
+  .carousel-slide{ box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+}
+
+/* Ocultar flechas en ambos carousels */
+.cert-carousel .carousel-btn,
+.workflow-carousel .carousel-btn{
+  display: none !important;
 }
 
 /* Imagen + texto */
@@ -1121,3 +1158,29 @@ p, li, h1, h2, h3, code { overflow-wrap: anywhere; }
 /* Cierre de seguridad global */
 html, body{ overflow-x: hidden !important; }
 
+/* ==============================
+   Espaciado de títulos por sección
+   ============================== */
+
+/* Títulos dentro de secciones (h2 principales) */
+section .container > h2,
+.about-content h2,
+.skills-header h2{
+  margin-bottom: clamp(1rem, 2.8vw, 2.4rem) !important;
+}
+
+/* Intro → separa "Certifications" del carrusel */
+#intro .cert-carousel{
+  margin-top: clamp(1.2rem, 2.4vw, 2.25rem) !important;
+}
+
+/* Portfolio → separa "Selected Projects" de los filtros */
+#portfolio .filters{
+  margin-top: clamp(.9rem, 2vw, 1.4rem) !important;
+  margin-bottom: clamp(1rem, 2.2vw, 2rem) !important; /* conservás aire abajo */
+}
+
+/* Utilitarios (por si querés ajustar en algún lugar puntual) */
+.spacer-sm{ height: .75rem; }
+.spacer-md{ height: 1.5rem; }
+.spacer-lg{ height: 2.25rem; }

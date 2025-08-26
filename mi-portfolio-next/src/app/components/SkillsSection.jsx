@@ -76,20 +76,20 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="skills-section">
       <div className="skills-header">
-        <h2>Skills</h2>
+        <h2 data-i18n-key="skills.slide">Skills</h2>
         
       </div>
 
       <div className="skills-box">
         <div className="skills-subheader">
-          <h3>Hard Skills</h3>
+          <h3 data-i18n-key="skills.subtitle">Hard Skills</h3>
           
         </div>
         <InfiniteRow speed={28} />
       </div>
 
       <div className="skills-box">
-        <h3>Soft Skills</h3>
+        <h3 data-i18n-key="softskills.subtitle">Soft Skills</h3>
         <ul className="skills-soft-grid">
             {SOFT_SKILLS.map(({ key, label, emoji }) => (
                 <li key={key} className="skills-chip">

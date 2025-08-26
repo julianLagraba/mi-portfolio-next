@@ -77,7 +77,7 @@ export default function HomePage() {
             </p>
 
             <h2 data-i18n-key="certs.heading">Certifications</h2>
-            <div className="cert-carousel" data-i18n-key="certs.carousel">
+            <div className="cert-carousel" data-speed="8" data-i18n-key="certs.carousel">
               <button className="carousel-btn prev" aria-label="Anterior">&#10094;</button>
               <div className="carousel-track-container">
                 <ul className="carousel-track">
@@ -223,7 +223,8 @@ export default function HomePage() {
       {/* PORTAFOLIO */}
       <section id="portfolio" className="section-dark" data-i18n-key="section.portfolio">
         <div className="container">
-          <h2 data-i18n-key="portfolio.heading">Portfolio</h2>
+          <h2 data-i18n-key="portfolio.heading">Selected Projects</h2>
+          
           <div className="filters">
             <button className="filter-btn active" data-filter="all" data-i18n-key="filter.all">All</button>
             <button className="filter-btn" data-filter="powerbi" data-i18n-key="filter.powerbi">Power BI</button>
