@@ -431,6 +431,24 @@ a.cv-button:hover {
 .skills-chip:hover { background: rgba(255,255,255,.06); transform: translateY(-1px); }
 .skills-chip span[aria-hidden]{ font-size: 1rem; }
 
+/* Quita hover en dispositivos táctiles */
+@media (hover: none), (pointer: coarse){
+  .skills-chip,
+  .skills-chip:hover,
+  .skills-chip:active{
+    background: rgba(0,0,0,.18) !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* En desktop (mouse) seguís con el hover suave */
+@media (hover: hover) and (pointer: fine){
+  .skills-chip:hover{
+    background: rgba(255,255,255,.06);
+    transform: translateY(-1px);
+  }
+}
 
 
 
@@ -482,6 +500,39 @@ a.cv-button:hover {
   color: var(--clr-secondary);
   text-decoration: underline;
 }
+
+/* ABOUT: 2 cols en desktop, 1 col en mobile + imagen visible */
+.about-grid{
+  grid-template-columns: 1fr 1.25fr;      /* desktop más equilibrado */
+  gap: 1.5rem;
+}
+
+@media (max-width: 960px){
+  .about-grid{
+    grid-template-columns: 1fr !important; /* 1 columna en móvil */
+    gap: 1.25rem !important;
+  }
+  .about-photo{ display:flex; justify-content:center; }
+  .about-photo img{
+    display:block !important;
+    width: clamp(180px, 55vw, 280px) !important;
+    height: auto !important;
+    margin-inline: auto !important;
+  }
+  .about-content{
+    padding-inline: 1rem;                  /* aire lateral */
+    text-align: left;
+  }
+}
+
+/* Evitar “cortes” de texto por palabras largas */
+.about-content p{
+  overflow: visible;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
 
 /* ─────────────────────────────
    Carrusel de Certificaciones
@@ -928,6 +979,45 @@ footer a:hover {
   text-align: center;
   color: rgba(255,255,255,.7);
   font-size: .95rem;
+}
+
+/* Card un poco más compacta en móvil */
+.contact-card{
+  padding: clamp(1.25rem, 2.5vw, 2rem) !important;
+  border-radius: 18px;
+}
+
+/* Desktop/tablet como lo tenías; móvil a 1 columna */
+.contact-grid{
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 1024px){
+  .contact-grid{ grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+}
+@media (max-width: 900px){
+  .contact-grid{
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Títulos de columnas y listas con mejor ritmo vertical */
+.contact-title{
+  margin: .25rem 0 .6rem !important;
+  letter-spacing: .18em;
+}
+.contact-list{ gap: .35rem !important; }
+.contact-list a{
+  border-bottom: 1px solid transparent;
+}
+.contact-divider{ margin: 1.25rem 0 .9rem !important; }
+
+/* CTA y nombre bien visibles pero sin romper layout en móvil */
+@media (max-width: 900px){
+  .contact-name{ font-size: clamp(1.35rem, 3.8vw, 1.9rem) !important; }
+  .contact-blurb{ max-width: 60ch; }
+  .contact-cta{ display:inline-block; margin-top:.5rem; }
 }
 
 
