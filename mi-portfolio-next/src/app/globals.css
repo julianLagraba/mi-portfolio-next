@@ -200,6 +200,33 @@ header.nav .container {
     color: #fff !important;
   }
 }
+/* ===== Lang switch cuadrado en mobile ===== */
+@media (max-width: 768px){
+  #lang-switch{
+    /* forma y tamaño */
+    width: 2.5rem !important;       /* ≈40px */
+    height: 2.5rem !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+
+    /* que no ensanche por la flecha nativa */
+    -webkit-appearance: none !important;
+            appearance: none !important;
+    background-image: none !important;
+
+    /* centrado del texto “EN/ES” */
+    text-align: center !important;
+    text-align-last: center !important; /* centra el valor seleccionado */
+    line-height: 2.5rem !important;     /* verticalmente centrado */
+
+    /* evita zoom de iOS/Android y mantiene legibilidad */
+    font-size: 1rem !important;         /* >=16px */
+    letter-spacing: .02em;
+  }
+  /* las opciones también a 16px para evitar zoom */
+  #lang-switch option{ font-size: 1rem !important; }
+}
+
 a.cv-button {
   display: inline-block;
   padding: 0.15rem 1.25rem !important;  
