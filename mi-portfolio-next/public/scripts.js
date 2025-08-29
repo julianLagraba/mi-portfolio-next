@@ -147,7 +147,7 @@ function initCarousels() {
       // 3) Autoplay por transform (sin snaps)
       container.style.scrollSnapType = "none";
       let offset = 0;
-      const loopSec = Number(carousel.dataset.speed || 28); // igual que skills
+      const loopSec = Number(carousel.dataset.speed || 8); // igual que skills
       let playing = true, rafId = 0, last = 0;
 
       const speedPxPerMs = () => (firstSetWidth > 0 ? firstSetWidth / (loopSec * 1000) : 0);

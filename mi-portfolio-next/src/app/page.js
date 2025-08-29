@@ -115,39 +115,8 @@ export default function HomePage() {
                         </div>
                       </div>
                     </li>
-                  {/* Slide 2 */}
-                  <li className="carousel-slide" data-i18n-key="cert2.slide">
-                    <div className="slide-inner">
-                      {/* Imagen clickeable */}
-                      <a
-                        href="https://www.credly.com/badges/ec3d5daf-c581-4e28-a187-5182c3f32481?source=linked_in_profile"
-                        target="_blank"
-                        rel="noopener"
-                      >
-                        <img
-                          src="/img/cissco.png"
-                          alt="Introduction to Cybersecurity – Cisco"
-                          data-i18n-key="cert2.imgAlt"
-                        />
-                      </a>
-                      <div className="slide-info">
-                        <h3 data-i18n-key="cert2.title">Introduction to Cybersecurity</h3>
-                        <p className="issuer" data-i18n-key="cert2.issuer">Cisco</p>
-                        {/* Único enlace dentro del slide */}
-                        <a
-                          href="https://www.credly.com/badges/ec3d5daf-c581-4e28-a187-5182c3f32481?source=linked_in_profile"
-                          target="_blank"
-                          rel="noopener"
-                          data-i18n-key="cert2.linkText"
-                          className="cert-link"
-                        >
-                          View Certificate
-                        </a>
-                      </div>
-                    </div>
-                  </li>
 
-                  {/* Slide 3 */}
+                  {/* Slide 2 */}
                   <li className="carousel-slide" data-i18n-key="cert3.slide">
                     <div className="slide-inner">
                       {/* Imagen clickeable */}
@@ -179,7 +148,73 @@ export default function HomePage() {
                     </div>
                   </li>
 
-                  {/* Slide 4 */}
+                  {/* Slide 3 */}
+                  <li className="carousel-slide" data-i18n-key="cert5.slide">
+                    <div className="slide-inner">
+                      {/* Imagen clickeable */}
+                      <a
+                        href="https://www.credly.com/badges/feb8f7aa-0f0e-4b3b-b3c5-dfd821d1907f/public_url"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        <img
+                          src="/img/IA.png"
+                          alt="Artificial Intelligence Fundamentals – IBM SkillsBuild"
+                          data-i18n-key="cert5.imgAlt"
+                        />
+                      </a>
+                      <div className="slide-info">
+                        <h3 data-i18n-key="cert5.title">Artificial Intelligence Fundamentals</h3>
+                        <p className="issuer" data-i18n-key="cert5.issuer">Issued by IBM SkillsBuild</p>
+                        {/* Único enlace dentro del slide */}
+                        <a
+                          href="https://www.credly.com/badges/feb8f7aa-0f0e-4b3b-b3c5-dfd821d1907f/public_url"
+                          target="_blank"
+                          rel="noopener"
+                          data-i18n-key="cert5.linkText"
+                          className="cert-link"
+                        >
+                          View Certificate
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+
+      
+                  {/* Slide 4*/}
+                  <li className="carousel-slide" data-i18n-key="cert2.slide">
+                    <div className="slide-inner">
+                      {/* Imagen clickeable */}
+                      <a
+                        href="https://www.credly.com/badges/ec3d5daf-c581-4e28-a187-5182c3f32481?source=linked_in_profile"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        <img
+                          src="/img/cissco.png"
+                          alt="Introduction to Cybersecurity – Cisco"
+                          data-i18n-key="cert2.imgAlt"
+                        />
+                      </a>
+                      <div className="slide-info">
+                        <h3 data-i18n-key="cert2.title">Introduction to Cybersecurity</h3>
+                        <p className="issuer" data-i18n-key="cert2.issuer">Cisco</p>
+                        {/* Único enlace dentro del slide */}
+                        <a
+                          href="https://www.credly.com/badges/ec3d5daf-c581-4e28-a187-5182c3f32481?source=linked_in_profile"
+                          target="_blank"
+                          rel="noopener"
+                          data-i18n-key="cert2.linkText"
+                          className="cert-link"
+                        >
+                          View Certificate
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+
+                  
+                  {/* Slide 5 */}
                   <li className="carousel-slide" data-i18n-key="cert4.slide">
                     <div className="slide-inner">
                       {/* Imagen clickeable */}
