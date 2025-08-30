@@ -27,7 +27,7 @@ export default function HomePage() {
           <div className="hero-content container">
             <h1 data-i18n-key="hero.name">JULIÁN LAGRABA</h1>
             <p data-i18n-key="hero.description">
-              Data Analyst • Automation • Visualization
+              Data Analyst • BI Visualization • Automation
             </p>
             <a href="#portfolio" className="btn-primary" data-i18n-key="hero.cta">
               View Portfolio
