@@ -3,6 +3,8 @@ import "./globals.css";
 import Script from "next/script";
 import I18nProvider from "./components/I18nProvider";
 import HeaderClient from "./components/HeaderClient";
+import { Analytics } from "@vercel/analytics/react"
+
 
 export const metadata = {
   title: "Portafolio – Julián Lagraba",
@@ -29,7 +31,9 @@ export default function RootLayout({ children }) {
           {/* 5) El resto de la página (hero, intro, portfolio, proyectos…) */}
           {children}
         </I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
 }
+
