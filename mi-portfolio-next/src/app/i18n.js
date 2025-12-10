@@ -113,7 +113,29 @@ const i18n = {
     "soft.continuousLearning": "Continuous Learning",
     "soft.adaptability": "Adaptability to New Tech",
     "soft.timeManagement": "Time Management",
-    "soft.attentionToDetail": "Attention to Detail"
+    "soft.attentionToDetail": "Attention to Detail",
+    //earthly
+    "proj.earthly.title": "Earthly – Eco Travel Globe",
+    "proj.earthly.subtitle": "Collaborative data storytelling project about sustainable tourism, combining UX/UI design with an interactive globe that ranks countries by sustainability score.",
+    
+    "proj.earthly.card1.title": "Full case study – Behance",
+    "proj.earthly.card1.desc": "Complete Earthly project: branding, UX research, user flows, wireframes and final UI screens.",
+    
+    "proj.earthly.card2.title": "Eco Travel Globe – live demo",
+    "proj.earthly.card2.desc": "Interactive globe built with Python + D3.js to explore sustainability scores by country and discover eco–friendly destinations.",
+
+    "proj.common.description": "Description",
+    "proj.common.stack": "Tech stack",
+    "proj.common.show_details": "Show details...",
+
+    "proj.earthly.desc.1": "Earthly is a conceptual platform focused on sustainable travel. The project was developed in collaboration with a UX/UI designer, who led the visual identity, flows and interface design. My main contribution was the data visualization tab <strong>“Eco Travel Globe”</strong>.",
+    "proj.earthly.desc.2": "For the globe, I gathered and processed open–source sustainability indicators using <strong>Python</strong>. The data was cleaned, normalized into a 0–100 score and exported as a JSON dataset grouped by country. This dataset feeds an interactive visualization built with <strong>D3.js</strong>, rendered over a globe using geographic projections and TopoJSON.",
+    "proj.earthly.desc.3": "Users can rotate the globe, hover or click on countries to see their sustainability score and key metrics. The interaction is optimized for both desktop and mobile, and the overall experience integrates with the visual language defined in the Earthly UI.",
+
+    "proj.earthly.stack.python": "Python for data collection, cleaning and scoring.",
+    "proj.earthly.stack.d3": "D3.js + TopoJSON for the interactive globe and map projections.",
+    "proj.earthly.stack.web": "JavaScript / HTML / CSS for the front-end integration.",
+    "proj.earthly.stack.vercel": "Deployment on Vercel for the Eco Travel Globe demo."
   },
   es: {
     "nav.home":      "Inicio",
@@ -229,7 +251,29 @@ const i18n = {
     "soft.continuousLearning": "Aprendizaje continuo",
     "soft.adaptability": "Adaptabilidad a nuevas tecnologías",
     "soft.timeManagement": "Gestión del tiempo",
-    "soft.attentionToDetail": "Atención al detalle"
+    "soft.attentionToDetail": "Atención al detalle",
+    //earthly
+    "proj.earthly.title": "Earthly – Eco Travel Globe",
+    "proj.earthly.subtitle": "Proyecto colaborativo de data storytelling sobre turismo sostenible, combinando diseño UX/UI con un globo interactivo que clasifica países según su puntuación de sostenibilidad.",
+    
+    "proj.earthly.card1.title": "Case study completo – Behance",
+    "proj.earthly.card1.desc": "Proyecto Earthly completo: branding, investigación UX, user flows, wireframes y pantallas UI finales.",
+    
+    "proj.earthly.card2.title": "Eco Travel Globe – demo en vivo",
+    "proj.earthly.card2.desc": "Globo interactivo construido con Python + D3.js para explorar puntuaciones de sostenibilidad por país y descubrir destinos ecológicos.",
+
+    "proj.common.description": "Descripción",
+    "proj.common.stack": "Tech stack",
+    "proj.common.show_details": "Ver detalles...",
+
+    "proj.earthly.desc.1": "Earthly es una plataforma conceptual enfocada en el turismo sostenible. El proyecto fue desarrollado en colaboración con un diseñador UX/UI, quien lideró la identidad visual, flujos y diseño de interfaz. Mi contribución principal fue la pestaña de visualización de datos <strong>“Eco Travel Globe”</strong>.",
+    "proj.earthly.desc.2": "Para el globo, recopilé y procesé indicadores de sostenibilidad de código abierto usando <strong>Python</strong>. Los datos fueron limpiados, normalizados en una puntuación de 0 a 100 y exportados como un dataset JSON agrupado por país. Este dataset alimenta una visualización interactiva construida con <strong>D3.js</strong>, renderizada sobre un globo usando proyecciones geográficas y TopoJSON.",
+    "proj.earthly.desc.3": "Los usuarios pueden rotar el globo, pasar el cursor o hacer clic en los países para ver su puntuación de sostenibilidad y métricas clave. La interacción está optimizada tanto para escritorio como para móviles, y la experiencia general se integra con el lenguaje visual definido en la UI de Earthly.",
+
+    "proj.earthly.stack.python": "Python para la recolección, limpieza y puntuación de datos.",
+    "proj.earthly.stack.d3": "D3.js + TopoJSON para el globo interactivo y proyecciones de mapa.",
+    "proj.earthly.stack.web": "JavaScript / HTML / CSS para la integración front-end.",
+    "proj.earthly.stack.vercel": "Despliegue en Vercel para la demo de Eco Travel Globe."
   },
   
 };

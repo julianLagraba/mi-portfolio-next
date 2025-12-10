@@ -11,46 +11,68 @@
   --clr-card:      #2a2929;   /* fondo de las tarjetas */
   --clr-white:     #ffffff;
   --clr-primary:   #ffffff;   /* texto principal claro */
-  --clr-secondary: #cacaca;   /* azul de acento */
-  --clr-btn-text:  #1b1919;   /* texto oscuro sobre botones azules */
+  --clr-secondary: #cacaca;   /* acento */
+  --clr-btn-text:  #1b1919;   /* texto oscuro sobre botones claros */
   --clr-text:      #f5f3f3;   /* texto neutro claro */
   --clr-muted:     #777777;   /* texto menos destacado */
-  --clr-hover:     #e0e0e0;   /* azul claro para hover */
+  --clr-hover:     #e0e0e0;   /* hover claro */
 
-  /* Tipografía */
+  /* Tipografía base */
   --font-base: 'Inter', sans-serif;
 
   /* Radios y espaciados */
   --radius: 8px;
   --gap: 2rem;
+
+  /* Tipografías fluidas */
+  --fs-h1: clamp(1.8rem, 2vw + 1.2rem, 3rem);
+  --fs-h2: clamp(1.4rem, 1.5vw + 1rem, 2.2rem);
+  --fs-body: clamp(.95rem, .4vw + .8rem, 1.1rem);
 }
 
 /* ——————————————————————————————————————————————————————————————————————————
    Import Google Font
    —————————————————————————————————————————————————————————————————————————— */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
 
 /* ——————————————————————————————————————————————————————————————————————————
    RESET & Global
    —————————————————————————————————————————————————————————————————————————— */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: var(--font-base);
-  background-color: var(--clr-bg);
-  color: var(--clr-text);
+  font-size: var(--fs-body);
   line-height: 1.6;
+  background: radial-gradient(circle at 40% 20%, #3a1875 0%, #1a0a2b 40%, #0b0615 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--clr-text);
 }
-img {
+
+img,
+video,
+canvas,
+svg {
   max-width: 100%;
+  height: auto;
   display: block;
 }
+
+iframe {
+  max-width: 100%;
+}
+
 a {
   color: var(--clr-primary);
   text-decoration: none;
@@ -59,66 +81,127 @@ a {
 a:hover {
   color: var(--clr-secondary);
 }
+
 ul {
   list-style: none;
 }
 
-/* ——————————————————————————————————————————————————————————————————————————
-   Secciones de fondo alterno
-   —————————————————————————————————————————————————————————————————————————— */
-.section-transparent { background: transparent; }
-.section-dark        { background: #2b2a2a; }
-.section-darker      { background: #4e4e4e; }
+/* Evitar scroll horizontal accidental */
+html,
+body {
+  overflow-x: hidden;
+}
 
-.section-dark, .section-darker {
-  color: var(--clr-text);
-}
-.section-dark a,
-.section-darker a {
-  color: var(--clr-secondary);
-}
-.section-dark a:hover,
-.section-darker a:hover {
-  color: var(--clr-hover);
-}
+/* ——————————————————————————————————————————————————————————————————————————
+   Layout básico
+   —————————————————————————————————————————————————————————————————————————— */
 
 section {
   width: 100%;
   padding: 6rem 0;
-  scroll-margin-top: 80px; 
+  scroll-margin-top: 80px;
 }
 
-/* ——————————————————————————————————————————————————————————————————————————
-   Contenedor centrado
-   —————————————————————————————————————————————————————————————————————————— */
+/* Secciones que antes tapaban el gradiente del body */
+.section-transparent,
+.section-dark,
+.section-darker {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor centrado base */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  /*background: transparent;*/
+  background: transparent;
   box-shadow: none;
 }
 
+/* Grid utilitario */
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Botones y badges que no se rompan */
+.btn,
+.badge {
+  inline-size: fit-content;
+  max-width: 100%;
+}
+
+p,
+li,
+h1,
+h2,
+h3,
+code {
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.15;
+}
+h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+}
+
 /* ——————————————————————————————————————————————————————————————————————————
-   Navbar
+   NAVBAR (desktop + base)
    —————————————————————————————————————————————————————————————————————————— */
+
 header.nav {
-  position: fixed;
-  top: 0; left: 0;
+  position: static;
+  top: 0;
+  left: 0;
   width: 100%;
-  background: var(--clr-bg);
+  background: transparent;
   z-index: 1000;
   transition: background .3s, box-shadow .3s;
+  margin-top: 20px;
 }
+
 header.nav.scrolled {
   background: var(--clr-bg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-header.nav .container {
+
+/* Contenedor interno del header: logo izq + bloque derecho */
+header.nav .header-inner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   padding: 1rem 0;
+}
+
+/* Logo fijo a la izquierda */
+.header-inner .logo {
+  flex: 0 0 auto;
+}
+
+/* Bloque derecho: nav centrado + switch/hamburguesa a la derecha */
+.header-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Nav desktop centrado dentro del header-right */
+.header-right .nav-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Switch pegado al borde derecho */
+.header-right .lang-switch {
+  margin-left: auto;
 }
 
 /* Logo / Home */
@@ -133,11 +216,39 @@ header.nav .container {
   color: var(--clr-secondary);
 }
 
-/* Enlaces de navegación */
+/* Icono HOME con degradado tipo app */
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff4b7a, #c29aff, #3b82f6);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  color: #fff;
+  text-decoration: none;
+}
+
+.home-badge-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Bloque de navegación desktop (centro) */
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Links centrados dentro del header */
 .nav-links {
   display: flex;
   gap: 2rem;
+  justify-content: center;
 }
+
 .nav-links a {
   position: relative;
   font-weight: 600;
@@ -150,7 +261,8 @@ header.nav .container {
 .nav-links a::after {
   content: "";
   position: absolute;
-  bottom: -2px; left: 0;
+  bottom: -2px;
+  left: 0;
   width: 0%;
   height: 2px;
   background: currentColor;
@@ -165,72 +277,18 @@ header.nav .container {
   color: var(--clr-secondary);
 }
 
-#lang-switch {
-  background: transparent;
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 4px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.85rem;
-
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-
-  
-  background-image: url("data:image/svg+xml,%3Csvg…%3E"); 
-  background-repeat: no-repeat;
-  background-position: right 0.6rem center;
+/* Área derecha: switch + botón CV en desktop */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-/* Cuando el select está abierto o enfocado */
-#lang-switch:focus {
-  outline: none;
-  background: rgba(255,255,255,0.1);
-}
-
-#lang-switch option {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: var(--clr-white);
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  #lang-switch option {
-    background-color: rgba(0,0,0,0.5) !important;
-    color: #fff !important;
-  }
-}
-/* ===== Lang switch cuadrado en mobile ===== */
-@media (max-width: 768px){
-  #lang-switch{
-    /* forma y tamaño */
-    width: 2.5rem !important;       /* ≈40px */
-    height: 2.5rem !important;
-    padding: 0 !important;
-    border-radius: 8px !important;
-
-    /* que no ensanche por la flecha nativa */
-    -webkit-appearance: none !important;
-            appearance: none !important;
-    background-image: none !important;
-
-    /* centrado del texto “EN/ES” */
-    text-align: center !important;
-    text-align-last: center !important; /* centra el valor seleccionado */
-    line-height: 2.5rem !important;     /* verticalmente centrado */
-
-    /* evita zoom de iOS/Android y mantiene legibilidad */
-    font-size: 1rem !important;         /* >=16px */
-    letter-spacing: .02em;
-  }
-  /* las opciones también a 16px para evitar zoom */
-  #lang-switch option{ font-size: 1rem !important; }
-}
-
+/* Botón CV en nav (a la derecha) */
 a.cv-button {
   display: inline-block;
-  padding: 0.15rem 1.25rem !important;  
-  background: #e3e3e3 !important;
+  padding: 0.15rem 1.25rem !important;
+  background: #ffffff !important;
   color: #111 !important;
   border-radius: 9999px !important;
   text-decoration: none !important;
@@ -239,17 +297,149 @@ a.cv-button {
   border: 1px solid transparent;
   transition: background .2s ease, color .2s ease, box-shadow .2s ease;
 }
-
 a.cv-button:hover {
   background: #3e3e3e !important;
   color: #fff !important;
   text-decoration: none !important;
 }
 
+/* Selector de idioma (switch) – mismo componente en desktop y mobile-panel */
+.lang-switch {
+  position: relative;
+  width: 70px;
+  height: 32px;
+  display: inline-block;
+}
 
+.lang-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.lang-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  color: white;
+  transition: .3s ease;
+}
+
+.lang-switch input:checked + .slider {
+  background: linear-gradient(90deg, #8d52ff, #c29aff);
+}
+
+.lang-switch .slider::before {
+  content: "";
+  height: 26px;
+  width: 26px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  transition: .3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+}
+
+.lang-switch input:checked + .slider::before {
+  transform: translateX(38px);
+}
+
+.label-left,
+.label-right {
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Lado derecho mobile (idioma + hamburguesa) – sólo en responsive */
+.nav-mobile-right {
+  display: none;   /* se activa en mobile */
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Botón hamburguesa base: oculto en desktop, se define bien en mobile */
+.nav-toggle {
+  display: none;
+}
+
+/* Panel lateral mobile */
+.nav-mobile-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 300px;
+  height: 100vh;
+  background: rgba(20, 10, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem 2rem;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 2000;
+}
+.nav-mobile-panel.open {
+  transform: translateX(0);
+}
+.nav-mobile-panel .close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.nav-mobile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+/* X de cierre dentro de la barra superior */
+.nav-mobile-top .close-btn {
+  align-self: center;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Switch dentro del top bar */
+.nav-mobile-top .lang-switch {
+  display: inline-block;
+  margin: 0;
+  margin-top: 20px;
+}
+
+/* Botón CV específico dentro del panel móvil */
+.nav-mobile-panel .cv-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;           /* lo baja respecto a los links */
+  padding: 0.7rem 1.25rem !important;
+}
 
 /* ——————————————————————————————————————————————————————————————————————————
-   Hero con partículas
+   HERO con partículas
    —————————————————————————————————————————————————————————————————————————— */
 .hero {
   position: relative;
@@ -262,7 +452,8 @@ a.cv-button:hover {
 }
 #tsparticles {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -289,24 +480,25 @@ a.cv-button:hover {
   font-weight: 600;
 }
 
-.hero-scroll{
-  position: fixed;      
+.hero-scroll {
+  position: fixed;
   left: 50%;
   bottom: 24px;
   transform: translateX(-50%);
   z-index: 30;
-  width: 44px; height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  display: grid; place-items: center;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.18);
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .18);
   color: #fff;
   text-decoration: none;
   backdrop-filter: blur(4px);
   transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
-
-.hero-scroll.is-hidden{
+.hero-scroll.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -318,7 +510,7 @@ a.cv-button:hover {
    —————————————————————————————————————————————————————————————————————————— */
 .btn-primary {
   display: inline-block;
-  background: var(--clr-secondary);
+  background: linear-gradient(90deg, #fff, #c29aff, #8d52ff);
   color: var(--clr-btn-text);
   padding: .7rem 1.4rem;
   border-radius: 4px;
@@ -333,14 +525,18 @@ a.cv-button:hover {
   transform: translateY(-2px);
 }
 
-
-/* SKILL SECCION*/
-
+/* ——————————————————————————————————————————————————————————————————————————
+   SKILLS SECTION
+   —————————————————————————————————————————————————————————————————————————— */
 .skills-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 1rem;
   color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 .skills-header h2 {
   font-size: 2rem;
@@ -356,9 +552,9 @@ a.cv-button:hover {
   margin-bottom: 3rem;
   padding: 1.5rem;
   border-radius: 1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .skills-subheader {
@@ -380,6 +576,11 @@ a.cv-button:hover {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .logo-tile {
   min-width: 130px;
   height: 64px;
@@ -387,7 +588,7 @@ a.cv-button:hover {
   align-items: center;
   justify-content: center;
   margin: 0 1.5rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: .5rem;
 }
@@ -397,93 +598,65 @@ a.cv-button:hover {
   opacity: 0.9;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
+/* Logos con texto */
 .skills-logo-tile {
   min-width: 130px;
-  height: auto;               /* para que crezca con el texto */
+  height: auto;
   margin: 0 24px;
   padding: 12px 8px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   display: flex;
-  flex-direction: column;     /* apila logo + texto */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;                   /* espacio entre logo y texto */
+  gap: 6px;
 }
-
 .skills-logo-tile img {
   height: 40px;
   width: auto;
   opacity: .9;
-  display: block;
 }
-
 .skills-logo-label {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   text-align: center;
 }
-
 .skills-logo-fallback {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
   opacity: .85;
   text-align: center;
 }
 
-
-/* Soft skills */
+/* Soft skills chips */
 .skills-soft-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  list-style: none; padding: 0; margin: .5rem 0 0;
+  list-style: none;
+  padding: 0;
+  margin: .5rem 0 0;
 }
-@media (min-width: 860px) { .skills-soft-grid { grid-template-columns: repeat(4, 1fr); } }
-
 .skills-chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 10px; border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(0,0,0,.18);
-  font-size: .9rem; color: rgba(255,255,255,.92);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: rgba(0, 0, 0, .18);
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .92);
 }
-.skills-chip:hover { background: rgba(255,255,255,.06); transform: translateY(-1px); }
-.skills-chip span[aria-hidden]{ font-size: 1rem; }
-
-/* Quita hover en dispositivos táctiles */
-@media (hover: none), (pointer: coarse){
-  .skills-chip,
-  .skills-chip:hover,
-  .skills-chip:active{
-    background: rgba(0,0,0,.18) !important;
-    transform: none !important;
-    box-shadow: none !important;
-  }
+.skills-chip span[aria-hidden] {
+  font-size: 1rem;
 }
-
-/* En desktop (mouse) seguís con el hover suave */
-@media (hover: hover) and (pointer: fine){
-  .skills-chip:hover{
-    background: rgba(255,255,255,.06);
-    transform: translateY(-1px);
-  }
-}
-
-
-
-
-
 
 /* ——————————————————————————————————————————————————————————————————————————
-   Sección “Intro” 
+   INTRO / ABOUT
    —————————————————————————————————————————————————————————————————————————— */
 .intro {
   text-align: center;
@@ -499,9 +672,7 @@ a.cv-button:hover {
   color: var(--clr-text);
 }
 
-/* ────────────────────────────────────────────────────────── */
-/*  Sobre mí: grid con foto y contenido                  */
-/* ────────────────────────────────────────────────────────── */
+/* About grid */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -510,9 +681,9 @@ a.cv-button:hover {
 }
 .about-photo img {
   width: 100%;
-  max-width: 300px;                
+  max-width: 300px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 .about-content h2 {
   font-size: 2rem;
@@ -527,71 +698,46 @@ a.cv-button:hover {
   color: var(--clr-secondary);
   text-decoration: underline;
 }
-
-/* ABOUT: 2 cols en desktop, 1 col en mobile + imagen visible */
-.about-grid{
-  grid-template-columns: 1fr 1.25fr;      /* desktop más equilibrado */
-  gap: 1.5rem;
-}
-
-@media (max-width: 960px){
-  .about-grid{
-    grid-template-columns: 1fr !important; /* 1 columna en móvil */
-    gap: 1.25rem !important;
-  }
-  .about-photo{ display:flex; justify-content:center; }
-  .about-photo img{
-    display:block !important;
-    width: clamp(180px, 55vw, 280px) !important;
-    height: auto !important;
-    margin-inline: auto !important;
-  }
-  .about-content{
-    padding-inline: 1rem;                  /* aire lateral */
-    text-align: left;
-  }
-}
-
-/* Evitar “cortes” de texto por palabras largas */
-.about-content p{
+.about-content p {
   overflow: visible;
   overflow-wrap: anywhere;
   word-break: break-word;
   line-height: 1.6;
 }
 
-
-/* ─────────────────────────────
-   Carrusel de Certificaciones
-───────────────────────────────── */
+/* ——————————————————————————————————————————————————————————————————————————
+   CARRUSEL CERTIFICACIONES
+   —————————————————————————————————————————————————————————————————————————— */
 .cert-carousel {
   position: relative;
   margin-top: 2rem;
 }
-
 .cert-carousel::before,
 .cert-carousel::after {
   content: "";
   position: absolute;
-  top: 0; bottom: 0;
-  width: 3rem;            
-  pointer-events: none;   
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  pointer-events: none;
   z-index: 5;
 }
 
 /* Ocultar scrollbars horizontales del carrusel */
 .carousel-track-container {
-  scrollbar-width: none;    /* Firefox */
+  scrollbar-width: none;
 }
-.carousel-track-container::-webkit-scrollbar { display: none; } /* WebKit */
+.carousel-track-container::-webkit-scrollbar {
+  display: none;
+}
 
-/* Asegura disposición horizontal de slides con gap */
+/* Track base */
 .carousel-track {
   display: flex;
-  gap: 24px;               /* coherente con el JS */
+  gap: 24px;
 }
 
-/* Snap (si usás scroll-snap) */
+/* Snap */
 .carousel-track-container {
   scroll-snap-type: x mandatory;
 }
@@ -599,48 +745,15 @@ a.cv-button:hover {
   scroll-snap-align: start;
 }
 
-
-
-
-/* Flechas */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
-  border: none;
-  font-size: 2rem;
-  padding: 0.2rem 0.6rem;
-  cursor: pointer;
-  border-radius: 4px;
-  z-index: 10;
-  transition: background .2s;
-}
-.carousel-btn:hover {
-  background: rgba(255,255,255,1);
-}
-.carousel-btn.prev { left: 0; }
-.carousel-btn.next { right: 0; }
-
-/* Track container */
+/* Track container con padding lateral */
 .carousel-track-container {
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  margin: 0 3rem;  
+  margin: 0 3rem;
   scroll-padding: 0 1rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.carousel-track-container {
-  overflow-x: auto;
-  -ms-overflow-style: none;  
-  scrollbar-width: none;    
-}
-
-/* Chrome, Safari y Opera */
-.carousel-track-container::-webkit-scrollbar {
-  display: none;
-}
-
 .carousel-track {
   display: flex;
   gap: 1.5rem;
@@ -653,25 +766,9 @@ a.cv-button:hover {
   max-width: calc(50% - 1rem);
   background: transparent;
   border-radius: var(--radius);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 1rem;
-  scroll-snap-align: start;
-}
-
-/* Smooth en GPU y sin snaps mientras auto-scroll */
-.carousel-track-container { overflow: hidden !important; scroll-snap-type: none !important; }
-.carousel-track { will-change: transform; transform: translateZ(0); }
-
-/* Evita re-render costoso por sombras en mobile (opcional) */
-@media (max-width: 640px){
-  .carousel-slide{ box-shadow: 0 6px 18px rgba(0,0,0,.35); }
-}
-
-/* Ocultar flechas en ambos carousels */
-.cert-carousel .carousel-btn,
-.workflow-carousel .carousel-btn{
-  display: none !important;
 }
 
 /* Imagen + texto */
@@ -681,7 +778,6 @@ a.cv-button:hover {
   object-fit: contain;
   margin-bottom: 0.75rem;
 }
-
 .carousel-slide h3 {
   font-size: 1rem;
   margin: 0.25rem 0;
@@ -692,23 +788,51 @@ a.cv-button:hover {
   color: var(--clr-muted);
   margin-top: 0.25rem;
 }
-
-.carousel-slide img {
-  display: block;    
-  margin: 0 auto;    
-}
-
 .carousel-slide a {
   text-decoration: none !important;
-  color: inherit;           
+  color: inherit;
+}
+.carousel-slide a:hover {
+  text-decoration: underline;
 }
 
-.carousel-slide a:hover {
-  text-decoration: underline;  
+.cert-carousel .carousel-btn,
+.workflow-carousel .carousel-btn {
+  display: none !important;
+}
+
+/* HARD RESET container-safe para cert */
+.cert-carousel {
+  position: relative;
+  overflow: hidden !important;
+}
+.carousel-track-container {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory;
+}
+.carousel-track {
+  display: flex;
+  gap: 1rem !important;
+  padding: 0 0 1rem !important;
+  box-sizing: border-box;
+}
+.carousel-slide {
+  box-sizing: border-box !important;
+  flex: 0 0 calc((100% - 2rem) / 2) !important;
+  max-width: calc((100% - 2rem) / 2) !important;
+  scroll-snap-align: start;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: center;
 }
 
 /* ——————————————————————————————————————————————————————————————————————————
-   Portafolio: filtros y grid de tarjetas
+   PORTFOLIO: filtros y grid de tarjetas
    —————————————————————————————————————————————————————————————————————————— */
 .filters {
   display: flex;
@@ -720,14 +844,13 @@ a.cv-button:hover {
   color: var(--clr-white);
   border: 2px solid var(--clr-secondary);
   background: transparent;
-  border: 2px solid var(--clr-secondary);
   border-radius: 4px;
   padding: .5rem 1rem;
   cursor: pointer;
   transition: background .2s, color .2s;
   font-weight: 500;
 }
-.filter-btn.active{
+.filter-btn.active {
   background: var(--clr-secondary);
   color: var(--clr-btn-text);
 }
@@ -737,84 +860,68 @@ a.cv-button:hover {
   color: var(--clr-btn-text);
 }
 
-.projects-grid {
-  display: grid;
-  gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-/* ─────────────────────────────
-   GRID DE TARJETAS
-───────────────────────────────── */
+/* GRID de tarjetas */
 .projects-grid {
   display: grid;
   gap: 2rem;
-  /* Pasa de 2 columnas a 3 columnas */
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   padding: 2rem 0;
 }
 
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ─────────────────────────────
-   TARJETA DE PROYECTO
-───────────────────────────────── */
+/* TARJETA DE PROYECTO con borde/halo en gradiente */
 .project-card {
+  position: relative;
   width: 320px;
   height: 300px;
   display: flex;
   flex-direction: column;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  border-radius: 12px;
+  padding: 1px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #ffffff, #c29aff, #8d52ff);
   overflow: hidden;
+  box-shadow: 0 0 40px rgba(110, 30, 255, 0.35);
   transition: transform .3s, box-shadow .3s;
 }
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: rgba(8, 6, 20, 0.96);
+}
+.project-card * {
+  position: relative;
+  z-index: 1;
+}
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 55px rgba(110, 30, 255, 0.6);
 }
 
-/* ─────────────────────────────
-   IMAGEN / OVERLAY
-───────────────────────────────── */
+/* Imagen / overlay */
 .card-image {
   width: 100%;
-  height: 200px;      
+  height: 200px;
   overflow: hidden;
 }
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   object-position: center center;
   transition: transform .3s;
 }
 .card-image:hover img {
   transform: scale(1.1);
 }
-
-.card-image:hover .overlay {
-  opacity: 1;
-}
 .card-image .overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   display: flex;
   align-items: center;
@@ -823,13 +930,13 @@ a.cv-button:hover {
   padding: 1rem;
   opacity: 0;
   transition: opacity .3s;
-  pointer-events: none; /* para que los clicks “pasen” al botón si llega a superponerse */
+  pointer-events: none;
+}
+.card-image:hover .overlay {
+  opacity: 1;
 }
 
-
-/* ─────────────────────────────
-   CONTENIDO (TÍTULO + BOTÓN)
-───────────────────────────────── */
+/* Contenido de la card */
 .card-content {
   flex: 1;
   padding: 1rem;
@@ -846,29 +953,32 @@ a.cv-button:hover {
   color: var(--clr-primary);
 }
 .card-content .btn-primary {
-  display: inline-block;
   margin-top: auto;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   font-size: 0.95rem;
-  background: var(--clr-secondary);
-  color: var(--clr-white);
+  background: #ffffff;
+  color: #1b1919;
   border-radius: 4px;
-  transition: background .2s, transform .2s;
+  font-weight: 600;
+  border: none;
   text-decoration: none;
+  transition: background .2s, color .2s, transform .2s, box-shadow .2s;
 }
 .card-content .btn-primary:hover {
-  background: var(--clr-white);
+  background: #e6e6e6;
+  color: #000;
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
 /* ——————————————————————————————————————————————————————————————————————————
-   Footer / Contacto
+   CONTACT / FOOTER
    —————————————————————————————————————————————————————————————————————————— */
 footer {
   padding: 2rem 0;
   text-align: center;
   background: var(--clr-white);
-  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
 }
 footer .container {
   max-width: 800px;
@@ -887,70 +997,32 @@ footer a:hover {
   color: var(--clr-secondary);
 }
 
-.project-card .btn-primary {
-
-  color: #1b1919;           
-  font-weight: 700;        
+/* Panel de contacto tipo card */
+.contact-panel {
+  padding: 4rem 0;
 }
-
-.project-card .btn-primary:hover {
-  background-color: #6db3ff; 
-  color: #ffffff;             
-}
-
-#contact .container {
-  text-align: center;
-}
-
-.section-transparent {
-  background-color: var(--clr-card) !important;
-  position: relative;
-  z-index: 1;
-}
-
-.section-dark {
-  background-color: #1b1919 !important;
-  position: relative;
-  z-index: 1;
-}
-
-.section-darker {
-  background-color: #2b2a2a !important;
-  position: relative;
-  z-index: 1;
-}
-#tsparticles {
-  z-index: 0;
-}
-
-/* ——— Contact panel ——— */
-.contact-panel { padding: 4rem 0; }
-
 .contact-card {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2.25rem 2rem;
   border-radius: 18px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(6px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
 }
-
 .contact-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 2.25rem;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
   align-items: start;
 }
-
 .contact-name {
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 800;
   margin: 0 0 .5rem 0;
   color: #fff;
 }
-
 .contact-blurb {
   margin: .5rem 0 1.25rem;
   color: var(--clr-text);
@@ -958,7 +1030,6 @@ footer a:hover {
   max-width: 52ch;
   line-height: 1.6;
 }
-
 .contact-cta {
   display: inline-block;
   margin-top: .25rem;
@@ -970,8 +1041,10 @@ footer a:hover {
   font-weight: 600;
   transition: transform .15s ease, filter .2s ease;
 }
-.contact-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
-
+.contact-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
 .contact-title {
   font-size: .88rem;
   letter-spacing: .22em;
@@ -979,11 +1052,12 @@ footer a:hover {
   color: var(--clr-secondary);
   margin: .2rem 0 .9rem;
 }
-
 .contact-list {
   list-style: none;
-  padding: 0; margin: 0;
-  display: grid; gap: .45rem;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .45rem;
 }
 .contact-list a {
   color: var(--clr-primary);
@@ -995,309 +1069,509 @@ footer a:hover {
   color: var(--clr-secondary);
   border-color: var(--clr-secondary);
 }
-
 .contact-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
   margin: 1.75rem 0 1.25rem;
 }
-
 .contact-copy {
   text-align: center;
-  color: rgba(255,255,255,.7);
+  color: rgba(255, 255, 255, .7);
   font-size: .95rem;
 }
 
-/* Card un poco más compacta en móvil */
-.contact-card{
-  padding: clamp(1.25rem, 2.5vw, 2rem) !important;
-  border-radius: 18px;
-}
-
-/* Desktop/tablet como lo tenías; móvil a 1 columna */
-.contact-grid{
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 2rem;
-}
-@media (max-width: 1024px){
-  .contact-grid{ grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-}
-@media (max-width: 900px){
-  .contact-grid{
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-  }
-}
-
-/* Títulos de columnas y listas con mejor ritmo vertical */
-.contact-title{
-  margin: .25rem 0 .6rem !important;
-  letter-spacing: .18em;
-}
-.contact-list{ gap: .35rem !important; }
-.contact-list a{
-  border-bottom: 1px solid transparent;
-}
-.contact-divider{ margin: 1.25rem 0 .9rem !important; }
-
-/* CTA y nombre bien visibles pero sin romper layout en móvil */
-@media (max-width: 900px){
-  .contact-name{ font-size: clamp(1.35rem, 3.8vw, 1.9rem) !important; }
-  .contact-blurb{ max-width: 60ch; }
-  .contact-cta{ display:inline-block; margin-top:.5rem; }
-}
-
-
-
-/* ——— Footer mínimo ——— */
 .site-footer {
-  background: var(--clr-bg);
-  border-top: 1px solid rgba(255,255,255,0.08);
+  background-color: transparent;
   padding: 1.25rem 0 2rem;
   text-align: center;
 }
-
 .site-footer p {
   color: var(--clr-muted);
   margin: 0;
-  }
+}
 
+/* ——————————————————————————————————————————————————————————————————————————
+   Títulos de sección
+   —————————————————————————————————————————————————————————————————————————— */
 
-  /* Reset responsive básico */
-*, *::before, *::after { box-sizing: border-box; }
-img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
-iframe { max-width: 100%; }
+section .container > h2,
+.about-content h2,
+.skills-header h2 {
+  margin-bottom: clamp(1rem, 2.8vw, 2.4rem) !important;
+}
 
-/* Contenedor fluido */
-.container, .wrap, .section {
+#intro .cert-carousel {
+  margin-top: clamp(1.2rem, 2.4vw, 2.25rem) !important;
+}
+
+#portfolio .filters {
+  margin-top: clamp(.9rem, 2vw, 1.4rem) !important;
+  margin-bottom: clamp(1rem, 2.2vw, 2rem) !important;
+}
+
+/* Utilitarios de espaciado */
+.spacer-sm { height: .75rem; }
+.spacer-md { height: 1.5rem; }
+.spacer-lg { height: 2.25rem; }
+
+/* ——————————————————————————————————————————————————————————————————————————
+   Layout fluido extra (override de container, .wrap, .section)
+   —————————————————————————————————————————————————————————————————————————— */
+
+.container,
+.wrap,
+.section {
   width: min(100% - 2rem, 1200px);
   margin-inline: auto;
 }
 
-/* Tipografías fluidas */
-:root {
-  --fs-h1: clamp(1.8rem, 2vw + 1.2rem, 3rem);
-  --fs-h2: clamp(1.4rem, 1.5vw + 1rem, 2.2rem);
-  --fs-body: clamp(.95rem, .4vw + .8rem, 1.1rem);
-}
-h1 { font-size: var(--fs-h1); line-height: 1.15; }
-h2 { font-size: var(--fs-h2); line-height: 1.2; }
-body { font-size: var(--fs-body); line-height: 1.6; }
-
-.grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-/* Botones y badges que no se rompan */
-.btn, .badge { inline-size: fit-content; max-width: 100%; }
-
-p, li, h1, h2, h3, code { overflow-wrap: anywhere; }
-
-/* Breakpoints de ajuste fino */
-@media (max-width: 1024px) {
-  .hero, .header, .section { padding: 2.5rem 0; }
-  .cols-2 { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-}
-@media (max-width: 768px) {
-  .hide-sm { display: none !important; }
-  .card { padding: 1rem; border-radius: 12px; }
-  .gallery img { border-radius: 10px; }
-}
-@media (max-width: 480px) {
-  .header { position: static; }
-  .section { padding: 1.5rem 0; }
-  .hero-title { margin-bottom: .75rem; }
-}
-
+/* Desktop-only / Mobile-only helpers */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
 
 /* ===============================
-   HEADER / NAV – Responsive only
+   RESPONSIVE – TODOS LOS MEDIA JUNTOS
    =============================== */
 
-/* Ajustes en tablets */
-@media (max-width: 1024px){
-  .nav-links{ gap: 1.25rem; }
-}
-
-/* Layout móvil*/
-@media (max-width: 768px){
-  header.nav .container{
-    display: grid !important;
-    grid-template-columns: 1fr auto;  
-    grid-template-areas:
-      "logo lang"
-      "menu menu";
-    align-items: center;
-    row-gap: .6rem;
-    padding-block: .6rem;
-  }
-
-  /* Logo arriba a la izquierda */
-  .logo{
-    grid-area: logo;
-    font-size: .95rem;
-    letter-spacing: .08em;
-  }
-
-  /* Menú centrado y con wrap*/
-  .nav-links{
-    grid-area: menu;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .8rem 1.1rem; 
-    padding: .2rem 0;
-  }
-  .nav-links a{
-    font-size: .9rem;
-    letter-spacing: .03em;
-    white-space: nowrap;               
-  }
-
-  /* Botón CV */
-  .nav-links .cv-button{
-    padding: .35rem 1rem !important;
-    line-height: 1 !important;
-  }
-
-  /* Selector de idioma */
-  #lang-switch{
-    grid-area: lang;
-    justify-self: end;
-    width: 130px;
-    background-image: none;         
+@media (min-width: 860px) {
+  .skills-soft-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 420px){
-  .nav-links{ gap: .6rem .9rem; }
-  .nav-links a{ font-size: .85rem; }
-  .nav-links .cv-button{ padding: .3rem .8rem !important; }
-}
+@media (max-width: 1024px) {
+  .hero,
+  .header,
+  .section {
+    padding: 2.5rem 0;
+  }
 
-/* ============================================
-   CERTIFICATIONS — container-safe HARD RESET
-   (sin vw, todo relativo al ancho del contenedor)
-   ============================================ */
+  .cols-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 
-/* Nada se sale del carrusel ni del .container */
-.cert-carousel{
-  position: relative;
-  overflow: hidden !important;
-}
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
 
-.carousel-track-container{
-  margin-inline: 0 !important;
-  padding-inline: 0 !important;
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  scroll-snap-type: x mandatory;
-}
-
-/* Espaciado interno del track sin “empujar” el layout */
-.carousel-track{
-  display: flex;
-  gap: 1rem !important;          
-  padding: 0 0 1rem !important;  
-  box-sizing: border-box;
-}
-
-.carousel-slide{
-  box-sizing: border-box !important;
-  flex: 0 0 calc((100% - 2rem) / 2) !important; 
-  max-width: calc((100% - 2rem) / 2) !important;
-  scroll-snap-align: start;
-  padding: 1rem;
-  border-radius: var(--radius);
-  background: transparent;
-  text-align: center;
-}
-
-/* Tablet: 2 columnas */
-@media (max-width: 1024px){
-  .carousel-slide{
+  .carousel-slide {
     flex-basis: calc((100% - 1rem) / 2) !important;
     max-width: calc((100% - 1rem) / 2) !important;
   }
+
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 640px){
-  .carousel-slide{
+@media (max-width: 960px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  .about-photo {
+    display: flex;
+    justify-content: center;
+  }
+  .about-photo img {
+    display: block !important;
+    width: clamp(180px, 55vw, 280px) !important;
+    height: auto !important;
+    margin-inline: auto !important;
+  }
+  .about-content {
+    padding-inline: 1rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .contact-name {
+    font-size: clamp(1.35rem, 3.8vw, 1.9rem) !important;
+  }
+  .contact-blurb {
+    max-width: 60ch;
+  }
+  .contact-cta {
+    display: inline-block;
+    margin-top: .5rem;
+  }
+}
+
+/* MOBILE GENERAL ≤ 768px */
+@media (max-width: 768px) {
+
+ /* helpers */
+  .hide-sm {
+    display: none !important;
+  }
+
+  .desktop-only { display: none !important; }
+  .mobile-only  { display: block !important; }
+
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .gallery img {
+    border-radius: 10px;
+  }
+
+  header.nav .header-inner {
+    padding-block: 1rem;
+    padding-inline: 1rem;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .header-right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  
+  header.nav .lang-switch {
+    display: none;
+  }
+  /* HAMBURGUESA*/
+  .nav-toggle {
+    display: flex;
+    width: 34px;                 
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: #ffffff;        
+    margin: 5px 0;               
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .nav-toggle.is-open {
+    background: transparent;
+  }
+  .nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+  .nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .nav-mobile-panel .lang-switch {
+    display: inline-block;
+    margin-top: .5rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: clamp(1.25rem, 2.5vw, 2rem) !important;
+  }
+
+}
+
+/* MOBILE SMALL ≤ 640px */
+@media (max-width: 640px) {
+  .carousel-slide {
     flex-basis: 100% !important;
     max-width: 100% !important;
-    padding: .75rem !important;            
+    padding: .75rem !important;
   }
-  .carousel-track{ padding-bottom: .75rem !important; }
-}
+  .carousel-track {
+    padding-bottom: .75rem !important;
+  }
 
-/* Imagen y textos compactos */
-.carousel-slide img{
-  width: 110px !important;
-  height: 110px !important;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto .5rem;
-}
-@media (max-width: 640px){
-  .carousel-slide h3{
+  .carousel-slide img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .carousel-slide h3 {
     font-size: .95rem !important;
     line-height: 1.25 !important;
     margin: .2rem 0 .1rem !important;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .carousel-slide .issuer{ font-size: .82rem !important; line-height: 1.25 !important; }
+  .carousel-slide .issuer {
+    font-size: .82rem !important;
+    line-height: 1.25 !important;
+  }
 }
 
-.carousel-btn{
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  z-index: 3 !important;
-  background: rgba(255,255,255,.85);
-  border: 0; border-radius: 6px;
-  font-size: 1.3rem; padding: .2rem .45rem;
-}
-.carousel-btn.prev{ left: .5rem !important; }
-.carousel-btn.next{ right: .5rem !important; }
-
-@media (max-width: 640px){
-  .carousel-btn{ font-size: 1.2rem; }
-  .carousel-btn.prev{ left: .4rem !important; }
-  .carousel-btn.next{ right: .4rem !important; }
+/* MOBILE XS ≤ 480px */
+@media (max-width: 480px) {
+  .header {
+    position: static;
+  }
+  .section {
+    padding: 1.5rem 0;
+  }
+  .hero-title {
+    margin-bottom: .75rem;
+  }
 }
 
-/* Por si quedaron fades laterales antiguos empujando (opcionales) */
-.cert-carousel::before, .cert-carousel::after{ display:none !important; } 
-
-/* Cierre de seguridad global */
-html, body{ overflow-x: hidden !important; }
-
-/* ==============================
-   Espaciado de títulos por sección
-   ============================== */
-
-/* Títulos dentro de secciones (h2 principales) */
-section .container > h2,
-.about-content h2,
-.skills-header h2{
-  margin-bottom: clamp(1rem, 2.8vw, 2.4rem) !important;
+/* MOBILE EXTRA SMALL ≤ 420px */
+@media (max-width: 420px) {
+  .nav-links {
+    gap: .6rem .9rem;
+  }
+  .nav-links a {
+    font-size: .85rem;
+  }
+  .nav-links .cv-button {
+    padding: .3rem .8rem !important;
+  }
 }
 
-/* Intro → separa "Certifications" del carrusel */
-#intro .cert-carousel{
-  margin-top: clamp(1.2rem, 2.4vw, 2.25rem) !important;
+
+
+/* ====== ABOUT + CERTS – FIX MOBILE DURO (≤ 640px) ====== */
+@media (max-width: 640px) {
+
+  #about {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  #about .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 1rem 2.5rem !important;
+    box-sizing: border-box;
+  }
+
+  .about-grid {
+    display: block !important;
+  }
+
+  .about-photo {
+    margin-bottom: 0.9rem !important;
+    display: block;
+    justify-content: flex-start !important;
+  }
+
+  .about-photo img {
+    width: 100px !important;      
+    height: auto !important;
+    margin: 0 !important;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .about-content {
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  .about-content h2 {
+    margin-top: 0.2rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.4rem;
+  }
+
+  .about-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  #about .container > h2 {
+    margin-top: 1.8rem !important;
+    margin-bottom: 0.9rem !important;
+    text-align: left;
+    padding: 0;
+  }
+
+ 
+  .cert-carousel {
+    margin-top: 0.5rem !important;
+  }
+
+  .cert-carousel .carousel-track-container {
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .cert-carousel .carousel-track {
+    justify-content: flex-start;
+  }
+
+  .cert-carousel .carousel-slide {
+    flex: 0 0 230px !important;
+    max-width: 230px !important;
+    margin-inline: 0 auto !important;
+  }
 }
 
-/* Portfolio → separa "Selected Projects" de los filtros */
-#portfolio .filters{
-  margin-top: clamp(.9rem, 2vw, 1.4rem) !important;
-  margin-bottom: clamp(1rem, 2.2vw, 2rem) !important; /* conservás aire abajo */
+/* ====== FILTERS – AJUSTE MOBILE (≤ 640px) ====== */
+@media (max-width: 640px) {
+  #portfolio .filters {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #portfolio .filter-btn {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.78rem;
+    border-width: 1px;
+    border-radius: 6px;
+  }
 }
 
-/* Utilitarios (por si querés ajustar en algún lugar puntual) */
-.spacer-sm{ height: .75rem; }
-.spacer-md{ height: 1.5rem; }
-.spacer-lg{ height: 2.25rem; }
+/* ===============================
+   CONTACT / FOOTER – MOBILE FIX
+   =============================== */
+
+@media (max-width: 640px) {
+
+  .contact-panel {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .contact-card {
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 1.6rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .contact-name {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .contact-blurb {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+  }
+
+  .contact-cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  .contact-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    margin: 0.6rem 0 0.4rem;
+  }
+
+  .contact-list {
+    gap: 0.25rem;
+  }
+
+  .contact-list a {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   CONTACT / FOOTER – MOBILE v2
+   =============================== */
+
+@media (max-width: 640px) {
+
+  .contact-panel {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .contact-card {
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 1.6rem 1.25rem 1.9rem;
+    border-radius: 16px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "intro intro"
+      "pages touch";
+    column-gap: 1.5rem;
+    row-gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .contact-grid > :nth-child(1) { grid-area: intro; }  
+  .contact-grid > :nth-child(2) { grid-area: pages; }  
+  .contact-grid > :nth-child(3) { grid-area: touch; }  
+
+  .contact-name {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .contact-blurb {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-bottom: 0.75rem;
+  }
+
+   .contact-cta {
+    display: block;                 
+    width: fit-content;             
+    margin: 0.75rem auto 0;         
+    text-align: center;             
+  }
+
+  .contact-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    margin: 0 0 0.4rem;
+  }
+
+  .contact-list {
+    gap: 0.3rem;
+  }
+
+  .contact-list a {
+    font-size: 0.9rem;
+  }
+}

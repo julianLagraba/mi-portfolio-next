@@ -9,11 +9,6 @@ export default function FormularioPage() {
       <main className="project-page">
         <div className="container">
 
-          {/* Botón de regreso */}
-          <Link href="/" className="back-link" data-i18n-key="proj.common.back">
-            ← Back
-          </Link>
-
           {/* Título y subtítulo */}
           <div className="project-header">
             <h1 data-i18n-key="proj.form.title">
@@ -23,6 +18,19 @@ export default function FormularioPage() {
               End-to-end workflow in Make + Power BI to validate payments and visualize results.
             </p>
           </div>
+
+          {/* Demo: Power BI embed */}
+          <section id="demo">
+            <h2 data-i18n-key="proj.common.gallery">Screenshots / Demo</h2>
+            <div className="embed-container">
+              <iframe
+                title="Inscripción"
+                src="https://app.powerbi.com/view?r=eyJrIjoiNDEwM2MyZmQtZWRiNC00NmVjLThlZjUtMWQ2OThlOTU1MzJiIiwidCI6ImIxNjQ5MWI2LTQzMGEtNDdkOS1iNzgzLTU2NWIxOWMxYWYwOSIsImMiOjR9"
+                frameBorder="0"
+                allowFullScreen
+              />
+            </div>
+          </section>
 
           {/* Descripción */}
           <section id="descripcion">
@@ -40,19 +48,6 @@ export default function FormularioPage() {
               <li data-i18n-key="proj.common.stack.powerbi">Power BI</li>
               <li data-i18n-key="proj.common.stack.web">JavaScript / HTML / CSS</li>
             </ul>
-          </section>
-
-          {/* Demo: Power BI embed */}
-          <section id="demo">
-            <h2 data-i18n-key="proj.common.gallery">Screenshots / Demo</h2>
-            <div className="embed-container">
-              <iframe
-                title="Inscripción"
-                src="https://app.powerbi.com/view?r=eyJrIjoiNDEwM2MyZmQtZWRiNC00NmVjLThlZjUtMWQ2OThlOTU1MzJiIiwidCI6ImIxNjQ5MWI2LTQzMGEtNDdkOS1iNzgzLTU2NWIxOWMxYWYwOSIsImMiOjR9"
-                frameBorder="0"
-                allowFullScreen
-              />
-            </div>
           </section>
 
           {/* Workflow completo */}

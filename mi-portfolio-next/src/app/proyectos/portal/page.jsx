@@ -6,10 +6,6 @@ export default function PortalPage() {
   return (
     <main className="project-page">
       <div className="container">
-        {/* Botón de regreso */}
-        <Link href="/" className="back-link" data-i18n-key="proj.common.back">
-          ← Back
-        </Link>
 
         {/* Título y subtítulo */}
         <div className="project-header">
@@ -18,6 +14,19 @@ export default function PortalPage() {
             Dashboard for employee management and license tracking.
           </p>
         </div>
+
+         {/* Demo */}
+        <section id="demo">
+          <h2 data-i18n-key="proj.common.demo">Demo</h2>
+          <div className="embed-container">
+            <iframe
+              title="Employee Portal Dashboard"
+              src="https://app.powerbi.com/view?r=eyJrIjoiMTQ0OGE5YjAtNmQ4ZC00OGE3LWE1ZGItMWQ4YjlkODgwMGUxIiwidCI6ImIxNjQ5MWI2LTQzMGEtNDdkOS1iNzgzLTU2NWIxOWMxYWYwOSIsImMiOjR9&pageName=ReportSection3f6095af65ddda42f455"
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>
+        </section>
 
         {/* Descripción */}
         <section id="descripcion">
@@ -35,19 +44,6 @@ export default function PortalPage() {
             <li data-i18n-key="proj.portal.stack.sheets">Google Sheets (data source)</li>
             <li data-i18n-key="proj.portal.stack.sql">SQL</li>
           </ul>
-        </section>
-
-        {/* Demo */}
-        <section id="demo">
-          <h2 data-i18n-key="proj.common.demo">Demo</h2>
-          <div className="embed-container">
-            <iframe
-              title="Employee Portal Dashboard"
-              src="https://app.powerbi.com/view?r=eyJrIjoiMTQ0OGE5YjAtNmQ4ZC00OGE3LWE1ZGItMWQ4YjlkODgwMGUxIiwidCI6ImIxNjQ5MWI2LTQzMGEtNDdkOS1iNzgzLTU2NWIxOWMxYWYwOSIsImMiOjR9&pageName=ReportSection3f6095af65ddda42f455"
-              frameBorder="0"
-              allowFullScreen
-            />
-          </div>
         </section>
 
         {/* Fuentes de datos */}

@@ -45,7 +45,7 @@ export default function ContactPanel() {
           </div>
 
           <div className="contact-divider" />
-          <p className="contact-copy">© 2025 Lagraba Julián</p>
+          <p className="contact-copy">© 2026 Lagraba Julián</p>
         </div>
       </div>
     </section>

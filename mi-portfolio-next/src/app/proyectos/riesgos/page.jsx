@@ -6,10 +6,6 @@ export default function RiesgosPage() {
   return (
     <main className="project-page">
       <div className="container">
-        {/* Botón de regreso */}
-        <Link href="/" className="back-link" data-i18n-key="proj.common.back">
-          ← Back
-        </Link>
 
         {/* Título y subtítulo */}
         <div className="project-header">
@@ -18,6 +14,20 @@ export default function RiesgosPage() {
             Final course dashboard in Data Analytics for an NGO.
           </p>
         </div>
+
+        {/* Demo */}
+        <section id="demo">
+          <h2 data-i18n-key="proj.common.demo">Demo</h2>
+          <div className="embed-container">
+            <iframe
+              title="Risk Visualization"
+              src="https://lookerstudio.google.com/embed/reporting/66863efc-ee6c-40e4-bdbc-c317b106063e/page/p_07cwv2qlld"
+              frameBorder="0"
+              allowFullScreen
+              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            />
+          </div>
+        </section>
 
         {/* Descripción */}
         <section id="descripcion">
@@ -36,19 +46,7 @@ export default function RiesgosPage() {
           </ul>
         </section>
 
-        {/* Demo */}
-        <section id="demo">
-          <h2 data-i18n-key="proj.common.demo">Demo</h2>
-          <div className="embed-container">
-            <iframe
-              title="Risk Visualization"
-              src="https://lookerstudio.google.com/embed/reporting/66863efc-ee6c-40e4-bdbc-c317b106063e/page/p_07cwv2qlld"
-              frameBorder="0"
-              allowFullScreen
-              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-            />
-          </div>
-        </section>
+        
 
         {/* Fuentes de datos */}
         <section id="fuentes">

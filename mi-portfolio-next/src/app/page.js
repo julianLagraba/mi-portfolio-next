@@ -266,6 +266,8 @@ export default function HomePage() {
             <button className="filter-btn" data-filter="make" data-i18n-key="filter.make">Make</button>
             <button className="filter-btn" data-filter="looker" data-i18n-key="filter.looker">Looker Studio</button>
             <button className="filter-btn" data-filter="react" data-i18n-key="filter.react">React</button>
+            <button className="filter-btn" data-filter="python" data-i18n-key="filter.python">Python</button>
+            <button className="filter-btn" data-filter="d3.js" data-i18n-key="filter.d3js">D3.js</button>
           </div>
           <div className="projects-grid">
             {/* Proyecto 1 */}
@@ -318,6 +320,19 @@ export default function HomePage() {
               <div className="card-content">
                 <h3>PokeApp</h3>
                 <a href="https://pi-pokemon-frontend-theta.vercel.app/" className="btn-primary">View Project</a>
+              </div>
+            </div>
+            {/* Proyecto 5 */}
+            <div className="project-card" data-tech="python d3.js">
+              <div className="card-image">
+                <img src="/img/earthly.jpg" alt="PokeApp" />
+                <div className="overlay">
+                  <p>Collaborative data storytelling project about sustainable tourism.</p>
+                </div>
+              </div>
+              <div className="card-content">
+                <h3>Earthly</h3>
+                <a href="/proyectos/earthly" className="btn-primary">View Project</a>
               </div>
             </div>
           </div>
@@ -380,7 +395,7 @@ export default function HomePage() {
 
       <footer className="site-footer">
         <div className="container">
-          <p>© 2025 Lagraba Julián</p>
+          <p>© 2026 Lagraba Julián</p>
         </div>
       </footer>
     </>
