@@ -98,15 +98,15 @@ export default function EarthlyPage() {
                   Earthly is a conceptual platform focused on sustainable travel.
                   The project was developed in collaboration with a UX/UI designer,
                   who led the visual identity, flows and interface design. My main
-                  contribution was the data visualization tab <strong>“Eco Travel Globe”</strong>.
+                  contribution was the data visualization tab “Eco Travel Globe”.
                 </p>
 
                 <p data-i18n-key="proj.earthly.desc.2">
                   For the globe, I gathered and processed open–source sustainability
-                  indicators using <strong>Python</strong>. The data was cleaned, normalized
+                  indicators using Python. The data was cleaned, normalized
                   into a 0–100 score and exported as a JSON dataset grouped by country.
                   This dataset feeds an interactive visualization built with
-                  <strong> D3.js</strong>, rendered over a globe using geographic projections and
+                  D3.js, rendered over a globe using geographic projections and
                   TopoJSON.
                 </p>
 

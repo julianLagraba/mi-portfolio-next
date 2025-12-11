@@ -37,7 +37,7 @@ export default function HeaderClient() {
               <a href="#cert-carousel">SERVICES</a>
               <a href="#portfolio">PORTFOLIO</a>
               <a href="#contact">CONTACT</a>
-              <a className="cv-button" href="/cv.pdf" target="_blank">DOWNLOAD CV</a>
+              <a className="cv-button" href={cvFile} target="_blank">DOWNLOAD CV</a>
             </nav>
 
             {/* LANG */}
@@ -96,7 +96,7 @@ export default function HeaderClient() {
         <a href="#contact" onClick={closeMenu}>CONTACT</a>
 
         {/* BOTÓN CV ABAJO, FULL WIDTH */}
-        <a className="cv-button" href="/cv.pdf" target="_blank">
+        <a className="cv-button" href={cvFile} target="_blank">
           DOWNLOAD CV
         </a>
       </nav>
