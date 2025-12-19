@@ -47,6 +47,11 @@
 }
 
 html {
+    background-color: #0b0615; 
+    overscroll-behavior-y: none; 
+}
+
+html {
   scroll-behavior: smooth;
 }
 
