@@ -443,7 +443,7 @@ a.cv-button:hover {
    —————————————————————————————————————————————————————————————————————————— */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1212,6 +1212,10 @@ section .container > h2,
 /* MOBILE GENERAL ≤ 768px */
 @media (max-width: 768px) {
 
+  body {
+        background-attachment: scroll; 
+    }
+
  /* helpers */
   .hide-sm {
     display: none !important;
@@ -1360,7 +1364,7 @@ section .container > h2,
 @media (max-width: 640px) {
 
   #about {
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
   }
 
